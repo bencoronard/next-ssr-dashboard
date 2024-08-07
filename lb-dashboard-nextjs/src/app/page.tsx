@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import ResponsiveLogo from "@/assets/icons/logo";
 
 export default function Home() {
   return (
@@ -10,38 +11,17 @@ export default function Home() {
           <code className={styles.code}>src/app/page.tsx</code>
         </p>
       </div>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/loxbit-logo.svg"
-            alt="Next.js Logo"
-            width={300}
-            height={300}
-            priority
-          />
-        </div>
-
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/loxbit-logo-white.svg"
-            alt="Next.js Logo"
-            width={300}
-            height={300}
-            priority
-          />
-        </div>
-
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/loxbit-logo-black.svg"
-            alt="Next.js Logo"
-            width={300}
-            height={300}
-            priority
-          />
+      <div className={styles.center}>
+        <div style={{ display: "flex", flexWrap: "wrap" }}>
+          <div className={styles.img}>
+            <ResponsiveLogo />
+          </div>
+          <div className={styles.img}>
+            <ResponsiveLogo variant="dark" />
+          </div>
+          <div className={styles.img}>
+            <ResponsiveLogo variant="light" />
+          </div>
         </div>
       </div>
 
