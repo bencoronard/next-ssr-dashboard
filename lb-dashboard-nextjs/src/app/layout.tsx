@@ -20,7 +20,7 @@ export default function RootLayout({
       <body>
         <AppRouterCacheProvider options={{ key: "css", enableCssLayer: true }}>
           <ThemeProvider theme={theme}>
-            <CssBaseline />
+            <CssBaseline enableColorScheme />
             {children}
           </ThemeProvider>
         </AppRouterCacheProvider>
