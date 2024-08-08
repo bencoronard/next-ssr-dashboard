@@ -1,81 +1,101 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+import Paper from "@mui/material/Paper";
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  Typography,
+} from "@mui/material";
+import React from "react";
+import { useTheme } from "@mui/material/styles";
+import { useRouter } from "next/navigation";
 import ResponsiveLogo from "@/assets/icons/logo";
 
 export default function Home() {
+  const theme = useTheme();
+  const router = useRouter();
+  const [country, setCountry] = React.useState("");
+  const [machine, setMachine] = React.useState("");
+
+  const handleCountryChange = (event: SelectChangeEvent) => {
+    setCountry(event.target.value as string);
+  };
+  const handleMachineChange = (event: SelectChangeEvent) => {
+    setMachine(event.target.value as string);
+  };
+  const handleSubmit = () => {
+    router.push(`/dashboard?country=${country}&machine=${machine}`);
+  };
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-      </div>
-      <div className={styles.center}>
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
-          <div className={styles.img}>
-            <ResponsiveLogo />
-          </div>
-          <div className={styles.img}>
-            <ResponsiveLogo variant="dark" />
-          </div>
-          <div className={styles.img}>
-            <ResponsiveLogo variant="light" />
-          </div>
+    <Box
+      component="main"
+      sx={{
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: theme.palette.primary.main,
+      }}
+    >
+      <Paper
+        elevation={24}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          borderRadius: "20px",
+          padding: "50px",
+          width: "500px",
+          gap: "1em",
+        }}
+      >
+        <div style={{ position: "relative", width: "10em", height: "10em" }}>
+          <ResponsiveLogo />
         </div>
-      </div>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+        <Typography component="h1" variant="h1">
+          Loxbit
+        </Typography>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+        <FormControl fullWidth>
+          <InputLabel id="select-country">เลือกประเทศ</InputLabel>
+          <Select
+            labelId="select-country"
+            name="country"
+            value={country}
+            label="เลือกประเทศ"
+            onChange={handleCountryChange}
+          >
+            <MenuItem value={"TH"}>ไทย</MenuItem>
+          </Select>
+        </FormControl>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
+        <FormControl fullWidth>
+          <InputLabel id="select-machine">เลือกเครื่อง</InputLabel>
+          <Select
+            labelId="select-machine"
+            name="machine"
+            value={machine}
+            label="เลือกเครื่อง"
+            onChange={handleMachineChange}
+          >
+            <MenuItem value={"SGT800-001"}>SGT800-001</MenuItem>
+            <MenuItem value={"SGT800-002"}>SGT800-002</MenuItem>
+          </Select>
+        </FormControl>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+        <FormControl fullWidth>
+          <Button variant="contained" onClick={handleSubmit}>
+            Submit
+          </Button>
+        </FormControl>
+      </Paper>
+    </Box>
   );
 }
