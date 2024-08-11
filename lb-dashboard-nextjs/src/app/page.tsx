@@ -14,6 +14,7 @@ import React from "react";
 import { useTheme } from "@mui/material/styles";
 import { useRouter } from "next/navigation";
 import ResponsiveLogo from "@/assets/icons/logo";
+import ThemeButton from "@/modules/common/components/buttons/button";
 
 export default function Home() {
   const theme = useTheme();
@@ -91,9 +92,7 @@ export default function Home() {
         </FormControl>
 
         <FormControl fullWidth>
-          <Button variant="contained" onClick={handleSubmit}>
-            Submit
-          </Button>
+          <ThemeButton />
         </FormControl>
       </Paper>
     </Box>
