@@ -11,13 +11,11 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useTheme } from "@mui/material/styles";
-import { useRouter } from "next/navigation";
 import ResponsiveLogo from "@/assets/icons/logo";
 import ThemeButton from "@/modules/common/components/buttons/button_toggle_theme";
 
 export default function Home() {
   const theme = useTheme();
-  const router = useRouter();
   const [country, setCountry] = React.useState("");
   const [machine, setMachine] = React.useState("");
 
@@ -26,9 +24,6 @@ export default function Home() {
   };
   const handleMachineChange = (event: SelectChangeEvent) => {
     setMachine(event.target.value as string);
-  };
-  const handleSubmit = () => {
-    router.push(`/dashboard?country=${country}&machine=${machine}`);
   };
 
   return (
