@@ -1,21 +1,28 @@
 "use client";
-import { createTheme } from "@mui/material/styles";
-// import { Roboto } from "next/font/google";
+import { experimental_extendTheme as extendTheme } from "@mui/material/styles";
 
-// const roboto = Roboto({
-//   weight: ["300", "400", "500", "700"],
-//   subsets: ["latin"],
-//   display: "swap",
-// });
-
-const theme = createTheme({
-  palette: {
-    mode: "light",
-    primary: {
-      main: "#1B3280",
+const theme = extendTheme({
+  cssVarPrefix: "x-css-var",
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: {
+          main: "#1B3280",
+        },
+        secondary: {
+          main: "#E49F24",
+        },
+      },
     },
-    secondary: {
-      main: "#E49F24",
+    dark: {
+      palette: {
+        primary: {
+          main: "#E49F24",
+        },
+        secondary: {
+          main: "#1B3280",
+        },
+      },
     },
   },
   typography: {

@@ -8,16 +8,17 @@ import {
   Select,
   SelectChangeEvent,
   Typography,
+  useTheme,
 } from "@mui/material";
 import React from "react";
-import { useTheme } from "@mui/material/styles";
 import ResponsiveLogo from "@/assets/icons/logo";
 import ThemeButton from "@/modules/common/components/buttons/button_toggle_theme";
 
 export default function Home() {
-  const theme = useTheme();
   const [country, setCountry] = React.useState("");
   const [machine, setMachine] = React.useState("");
+
+  const theme = useTheme();
 
   const handleCountryChange = (event: SelectChangeEvent) => {
     setCountry(event.target.value as string);
@@ -34,7 +35,7 @@ export default function Home() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: theme.vars.palette.primary.main,
       }}
     >
       <Paper

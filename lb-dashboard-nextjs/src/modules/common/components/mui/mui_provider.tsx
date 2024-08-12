@@ -1,16 +1,18 @@
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
-import { ThemeModeProvider } from "../../stores/mui_theme_mode_context";
+import { Experimental_CssVarsProvider as CssVarsProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
+import type {} from "@mui/material/themeCssVarsAugmentation";
+import theme from "@/themes/theme";
 
 export default function MuiProvider({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <AppRouterCacheProvider options={{ key: "x-css", enableCssLayer: true }}>
-      <ThemeModeProvider>
+      <CssVarsProvider theme={theme} defaultMode="system">
         <CssBaseline />
         {children}
-      </ThemeModeProvider>
+      </CssVarsProvider>
     </AppRouterCacheProvider>
   );
 }
