@@ -8,27 +8,23 @@ import {
   Select,
   SelectChangeEvent,
   Typography,
+  useTheme,
 } from "@mui/material";
 import React from "react";
-import { useTheme } from "@mui/material/styles";
-import { useRouter } from "next/navigation";
 import ResponsiveLogo from "@/assets/icons/logo";
 import ThemeButton from "@/modules/common/components/buttons/button_toggle_theme";
 
 export default function Home() {
-  const theme = useTheme();
-  const router = useRouter();
   const [country, setCountry] = React.useState("");
   const [machine, setMachine] = React.useState("");
+
+  const theme = useTheme();
 
   const handleCountryChange = (event: SelectChangeEvent) => {
     setCountry(event.target.value as string);
   };
   const handleMachineChange = (event: SelectChangeEvent) => {
     setMachine(event.target.value as string);
-  };
-  const handleSubmit = () => {
-    router.push(`/dashboard?country=${country}&machine=${machine}`);
   };
 
   return (
@@ -39,7 +35,7 @@ export default function Home() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: theme.vars.palette.primary.main,
       }}
     >
       <Paper
