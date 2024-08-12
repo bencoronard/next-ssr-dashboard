@@ -1,16 +1,13 @@
 "use client";
 import React from "react";
 import { ThemeProvider } from "@mui/material";
-import {
-  MuiThemeMode,
-  MuiThemeModeContextType,
-} from "../../types/mui/mui_types";
+import { MuiThemeMode, MuiThemeModeContextType } from "../types/mui_types";
 import lightTheme from "@/themes/theme_light";
 import darkTheme from "@/themes/theme_dark";
 
 const ThemeModeContext = React.createContext<MuiThemeModeContextType>({
   mode: "light",
-  toggleTheme: () => {},
+  switchTheme: () => {},
 });
 
 export function useThemeMode() {
@@ -24,12 +21,12 @@ export function ThemeModeProvider({
 }>) {
   const [mode, setMode] = React.useState<MuiThemeMode>("light");
   const theme = mode === "light" ? lightTheme : darkTheme;
-  const toggleTheme = () => {
+  const switchTheme = () => {
     const newMode = mode === "light" ? "dark" : "light";
     setMode(newMode);
   };
   return (
-    <ThemeModeContext.Provider value={{ mode, toggleTheme }}>
+    <ThemeModeContext.Provider value={{ mode, switchTheme }}>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </ThemeModeContext.Provider>
   );

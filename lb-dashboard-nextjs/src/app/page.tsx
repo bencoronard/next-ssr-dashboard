@@ -2,7 +2,6 @@
 import Paper from "@mui/material/Paper";
 import {
   Box,
-  Button,
   FormControl,
   InputLabel,
   MenuItem,
@@ -14,7 +13,7 @@ import React from "react";
 import { useTheme } from "@mui/material/styles";
 import { useRouter } from "next/navigation";
 import ResponsiveLogo from "@/assets/icons/logo";
-import ThemeButton from "@/modules/common/components/buttons/button";
+import ThemeButton from "@/modules/common/components/buttons/button_toggle_theme";
 
 export default function Home() {
   const theme = useTheme();
