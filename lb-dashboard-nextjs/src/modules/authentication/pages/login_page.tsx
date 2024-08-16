@@ -6,12 +6,14 @@ import {
   MenuItem,
   Select,
   SelectChangeEvent,
+  TextField,
   Typography,
   useTheme,
 } from "@mui/material";
 import React from "react";
 import ResponsiveLogo from "@/assets/icons/logo";
 import ThemeButton from "@/modules/common/components/buttons/button_toggle_theme";
+import LoginForm from "../forms/login/login_form";
 
 export default function LoginPage() {
   const [country, setCountry] = React.useState("");
@@ -58,33 +60,7 @@ export default function LoginPage() {
           Loxbit
         </Typography>
 
-        <FormControl fullWidth>
-          <InputLabel id="select-country">เลือกประเทศ</InputLabel>
-          <Select
-            labelId="select-country"
-            name="country"
-            value={country}
-            label="เลือกประเทศ"
-            onChange={handleCountryChange}
-          >
-            <MenuItem value={"TH"}>ไทย</MenuItem>
-            <MenuItem value={"SE"}>สวีเด็น</MenuItem>
-          </Select>
-        </FormControl>
-
-        <FormControl fullWidth>
-          <InputLabel id="select-machine">เลือกเครื่อง</InputLabel>
-          <Select
-            labelId="select-machine"
-            name="machine"
-            value={machine}
-            label="เลือกเครื่อง"
-            onChange={handleMachineChange}
-          >
-            <MenuItem value={"SGT800-001"}>SGT800-001</MenuItem>
-            <MenuItem value={"SGT800-002"}>SGT800-002</MenuItem>
-          </Select>
-        </FormControl>
+        <LoginForm />
 
         <FormControl fullWidth>
           <ThemeButton />
