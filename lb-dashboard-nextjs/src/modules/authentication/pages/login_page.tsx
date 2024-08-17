@@ -1,37 +1,17 @@
 import Paper from "@mui/material/Paper";
-import {
-  Box,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-  TextField,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Box, FormControl, Typography, useTheme } from "@mui/material";
 import React from "react";
 import ResponsiveLogo from "@/assets/icons/logo";
 import ThemeButton from "@/modules/common/components/buttons/button_toggle_theme";
 import LoginForm from "../forms/login/login_form";
 
 export default function LoginPage() {
-  const [country, setCountry] = React.useState("");
-  const [machine, setMachine] = React.useState("");
-
   const theme = useTheme();
-
-  const handleCountryChange = (event: SelectChangeEvent) => {
-    setCountry(event.target.value as string);
-  };
-  const handleMachineChange = (event: SelectChangeEvent) => {
-    setMachine(event.target.value as string);
-  };
-
   return (
     <Box
       component="main"
       sx={{
+        position: "relative",
         height: "100vh",
         display: "flex",
         justifyContent: "center",
@@ -52,20 +32,20 @@ export default function LoginPage() {
           gap: "1em",
         }}
       >
-        <div style={{ position: "relative", width: "10em", height: "10em" }}>
+        <Box sx={{ position: "relative", width: "10em", height: "10em" }}>
           <ResponsiveLogo />
-        </div>
+        </Box>
 
-        <Typography component="h1" variant="h1">
+        <Typography component="h1" variant="h2">
           Loxbit
         </Typography>
 
         <LoginForm />
-
-        <FormControl fullWidth>
-          <ThemeButton />
-        </FormControl>
       </Paper>
+
+      <Box sx={{ position: "absolute", bottom: 0, right: 0 }}>
+        <ThemeButton />
+      </Box>
     </Box>
   );
 }
