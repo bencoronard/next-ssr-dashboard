@@ -1,71 +1,73 @@
 import Paper from "@mui/material/Paper";
-import {
-  Box,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-  TextField,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Box, Grid, Stack, Typography, useTheme } from "@mui/material";
 import React from "react";
 import ResponsiveLogo from "@/assets/icons/logo";
 import ThemeButton from "@/modules/common/components/buttons/button_toggle_theme";
 import LoginForm from "../forms/login/login_form";
 
 export default function LoginPage() {
-  const [country, setCountry] = React.useState("");
-  const [machine, setMachine] = React.useState("");
-
   const theme = useTheme();
-
-  const handleCountryChange = (event: SelectChangeEvent) => {
-    setCountry(event.target.value as string);
-  };
-  const handleMachineChange = (event: SelectChangeEvent) => {
-    setMachine(event.target.value as string);
-  };
-
   return (
-    <Box
-      component="main"
-      sx={{
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: theme.vars.palette.primary.main,
-      }}
-    >
-      <Paper
-        elevation={24}
+    <Grid container component="main" sx={{ height: "100vh" }}>
+      <Grid
+        item
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          borderRadius: "20px",
-          padding: "50px",
-          width: "500px",
-          gap: "1em",
+          position: "relative",
+          flex: 1.5,
+          alignContent: "center",
+          backgroundColor: theme.vars.palette.primary.main,
+          display: { xs: "none", sm: "block" },
         }}
       >
-        <div style={{ position: "relative", width: "10em", height: "10em" }}>
-          <ResponsiveLogo />
-        </div>
+        <Box
+          sx={{
+            width: "15em",
+            height: "15em",
+            margin: "0 auto",
+          }}
+        >
+          <ResponsiveLogo variant="light" />
+        </Box>
 
-        <Typography component="h1" variant="h1">
-          Loxbit
-        </Typography>
-
-        <LoginForm />
-
-        <FormControl fullWidth>
+        <Box sx={{ position: "absolute", bottom: 0, left: 0 }}>
           <ThemeButton />
-        </FormControl>
-      </Paper>
-    </Box>
+        </Box>
+      </Grid>
+
+      <Grid
+        item
+        component={Paper}
+        elevation={12}
+        square
+        sx={{ flex: 1, paddingX: "1em", alignContent: "center" }}
+      >
+        <Stack spacing={3} alignItems="center">
+          <Box
+            sx={{
+              width: "10em",
+              height: "10em",
+              display: {
+                xs: "block",
+                sm: "none",
+              },
+            }}
+          >
+            <ResponsiveLogo />
+          </Box>
+
+          <Stack spacing={1}>
+            <Typography component="h1" variant="h3" textAlign="center">
+              Loxbit Portal
+            </Typography>
+
+            <Typography component="h2" variant="subtitle1" textAlign="center">
+              Please provide your credentials
+            </Typography>
+          </Stack>
+
+          <LoginForm />
+        </Stack>
+      </Grid>
+    </Grid>
   );
 }
