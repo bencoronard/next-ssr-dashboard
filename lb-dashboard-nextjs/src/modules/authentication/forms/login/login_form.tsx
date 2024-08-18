@@ -1,4 +1,11 @@
-import { Box, Button, FormControl, Stack, TextField } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControl,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { loginContext } from "../../stores/login_context";
 import React from "react";
 import { Observer } from "mobx-react-lite";
@@ -24,31 +31,41 @@ export default function LoginForm() {
       {() => (
         <Box sx={{ width: "100%" }}>
           <Stack spacing={2}>
-            <FormControl fullWidth>
-              <TextField
-                label="Username"
-                variant="outlined"
-                value={form.values.username}
-                onChange={(e) => {
-                  form.setFieldValue("username", e.target.value);
-                }}
-                error={!!form.errors.username}
-                helperText={form.errors.username}
-              />
-            </FormControl>
+            <Stack spacing={1}>
+              <Typography component="h2" variant="body1">
+                Username
+              </Typography>
+              <FormControl fullWidth>
+                <TextField
+                  placeholder="Enter username"
+                  variant="outlined"
+                  value={form.values.username}
+                  onChange={(e) => {
+                    form.setFieldValue("username", e.target.value);
+                  }}
+                  error={!!form.errors.username}
+                  helperText={form.errors.username}
+                />
+              </FormControl>
+            </Stack>
 
-            <FormControl fullWidth>
-              <TextField
-                label="Password"
-                variant="outlined"
-                value={form.values.password}
-                onChange={(e) => {
-                  form.setFieldValue("password", e.target.value);
-                }}
-                error={!!form.errors.password}
-                helperText={form.errors.password}
-              />
-            </FormControl>
+            <Stack spacing={1}>
+              <Typography component="h2" variant="body1">
+                Password
+              </Typography>
+              <FormControl fullWidth>
+                <TextField
+                  placeholder="Enter password"
+                  variant="outlined"
+                  value={form.values.password}
+                  onChange={(e) => {
+                    form.setFieldValue("password", e.target.value);
+                  }}
+                  error={!!form.errors.password}
+                  helperText={form.errors.password}
+                />
+              </FormControl>
+            </Stack>
 
             <FormControl fullWidth>
               <Button
