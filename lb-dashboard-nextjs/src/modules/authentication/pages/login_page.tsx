@@ -1,5 +1,4 @@
-import Paper from "@mui/material/Paper";
-import { Box, Grid, Stack, Typography, useTheme } from "@mui/material";
+import { Box, Grid, Paper, Stack, Typography, useTheme } from "@mui/material";
 import React from "react";
 import ResponsiveLogo from "@/assets/icons/logo";
 import ThemeButton from "@/modules/common/components/buttons/button_toggle_theme";
@@ -8,7 +7,7 @@ import LoginForm from "../forms/login/login_form";
 export default function LoginPage() {
   const theme = useTheme();
   return (
-    <Grid container component="main" sx={{ height: "100vh" }}>
+    <Grid container sx={{ height: "100vh" }}>
       <Grid
         item
         sx={{
@@ -39,7 +38,7 @@ export default function LoginPage() {
         component={Paper}
         elevation={12}
         square
-        sx={{ flex: 1, paddingX: "1em", alignContent: "center" }}
+        sx={{ flex: 1, paddingX: theme.spacing(6), alignContent: "center" }}
       >
         <Stack spacing={3} alignItems="center">
           <Box

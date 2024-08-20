@@ -15,7 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <MuiProvider>{children}</MuiProvider>
+        <MuiProvider>
+          <main>{children}</main>
+        </MuiProvider>
       </body>
     </html>
   );

@@ -106,3 +106,11 @@
   font-weight: 900;
   font-style: italic;
 }
+
+main {
+  max-width: 1440px;
+  margin: 0 auto;
+  box-shadow: -7px 0px 8px -4px rgba(0, 0, 0, 0.2),
+    -12px 0px 17px 2px rgba(0, 0, 0, 0.14),
+    -5px 0px 22px 4px rgba(0, 0, 0, 0.12);
+}
