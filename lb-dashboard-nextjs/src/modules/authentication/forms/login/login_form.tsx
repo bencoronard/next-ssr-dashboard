@@ -1,6 +1,8 @@
 import {
   Box,
   Button,
+  Container,
+  Divider,
   FormControl,
   IconButton,
   InputAdornment,
@@ -15,6 +17,10 @@ import { Observer } from "mobx-react-lite";
 import { useFormik } from "formik";
 import { loginFormInitValue, loginFormValidation } from "./login_schema";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import GoogleIcon from "@mui/icons-material/Google";
+import AppleIcon from "@mui/icons-material/Apple";
+import MicrosoftIcon from "@mui/icons-material/Microsoft";
 
 export default function LoginForm() {
   const context = React.useContext(loginContext);
@@ -94,6 +100,19 @@ export default function LoginForm() {
                 Submit
               </Button>
             </FormControl>
+
+            <Divider>or</Divider>
+
+            <Stack
+              direction="row"
+              spacing={{ xs: 3, sm: 5 }}
+              justifyContent="center"
+            >
+              <FacebookIcon />
+              <GoogleIcon />
+              <MicrosoftIcon />
+              <AppleIcon />
+            </Stack>
           </Stack>
         </Box>
       )}
