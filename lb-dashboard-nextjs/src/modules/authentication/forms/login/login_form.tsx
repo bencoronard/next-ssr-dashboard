@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Container,
   Divider,
   FormControl,
   IconButton,
@@ -9,7 +8,6 @@ import {
   Stack,
   TextField,
   Typography,
-  useTheme,
 } from "@mui/material";
 import { loginContext } from "../../stores/login_context";
 import React from "react";
@@ -21,6 +19,14 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import AppleIcon from "@mui/icons-material/Apple";
 import MicrosoftIcon from "@mui/icons-material/Microsoft";
+
+const iconStyle = { width: "1.5em", height: "1.5em" };
+const icons = [
+  { component: FacebookIcon, onClick: () => alert("Facebook clicked") },
+  { component: GoogleIcon, onClick: () => alert("Google clicked") },
+  { component: MicrosoftIcon, onClick: () => alert("Microsoft clicked") },
+  { component: AppleIcon, onClick: () => alert("Apple clicked") },
+];
 
 export default function LoginForm() {
   const context = React.useContext(loginContext);
@@ -108,10 +114,14 @@ export default function LoginForm() {
               spacing={{ xs: 3, sm: 5 }}
               justifyContent="center"
             >
-              <FacebookIcon />
-              <GoogleIcon />
-              <MicrosoftIcon />
-              <AppleIcon />
+              {icons.map((icon, index) => {
+                const IconComponent = icon.component;
+                return (
+                  <IconButton key={index} onClick={icon.onClick}>
+                    <IconComponent sx={iconStyle} />
+                  </IconButton>
+                );
+              })}
             </Stack>
           </Stack>
         </Box>
