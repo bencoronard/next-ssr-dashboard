@@ -77,11 +77,7 @@ export default function LoginForm() {
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          sx={{ color: theme.vars.palette.primary.main }}
-                        >
+                        <IconButton onClick={handleClickShowPassword}>
                           {showPassword ? <Visibility /> : <VisibilityOff />}
                         </IconButton>
                       </InputAdornment>
