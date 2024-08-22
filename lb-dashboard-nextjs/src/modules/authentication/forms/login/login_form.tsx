@@ -19,8 +19,6 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 export default function LoginForm() {
   const context = React.useContext(loginContext);
 
-  const theme = useTheme();
-
   const [showPassword, setShowPassword] = React.useState<boolean>(false);
 
   const form = useFormik({
