@@ -1,13 +1,17 @@
 import {
   Box,
   Button,
+  Container,
   Divider,
   FormControl,
   IconButton,
   InputAdornment,
+  Link,
   Stack,
   TextField,
   Typography,
+  useColorScheme,
+  useTheme,
 } from "@mui/material";
 import { loginContext } from "../../stores/login_context";
 import React from "react";
@@ -19,6 +23,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import AppleIcon from "@mui/icons-material/Apple";
 import MicrosoftIcon from "@mui/icons-material/Microsoft";
+import NextLink from "next/link";
 
 const iconStyle = { width: "1.5em", height: "1.5em" };
 const icons = [
@@ -29,6 +34,7 @@ const icons = [
 ];
 
 export default function LoginForm() {
+  const theme = useTheme();
   const context = React.useContext(loginContext);
 
   const [showPassword, setShowPassword] = React.useState<boolean>(false);
@@ -111,7 +117,7 @@ export default function LoginForm() {
 
             <Stack
               direction="row"
-              spacing={{ xs: 3, sm: 5 }}
+              spacing={{ xs: 1, sm: 3 }}
               justifyContent="center"
             >
               {icons.map((icon, index) => {
@@ -123,6 +129,25 @@ export default function LoginForm() {
                 );
               })}
             </Stack>
+
+            <Divider />
+
+            <NextLink
+              href="/home"
+              passHref
+              style={{ width: "fit-content", marginInline: "auto" }}
+            >
+              <Link
+                component={IconButton}
+                underline="none"
+                textAlign="center"
+                sx={{
+                  borderRadius: theme.vars.shape.borderRadius,
+                }}
+              >
+                Forgot password?
+              </Link>
+            </NextLink>
           </Stack>
         </Box>
       )}
