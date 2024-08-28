@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Container,
   Divider,
   FormControl,
   IconButton,
@@ -10,7 +9,6 @@ import {
   Stack,
   TextField,
   Typography,
-  useColorScheme,
   useTheme,
 } from "@mui/material";
 import { loginContext } from "../../stores/login_context";
@@ -133,7 +131,7 @@ export default function LoginForm() {
             <Divider />
 
             <NextLink
-              href="/home"
+              href="/forgot"
               passHref
               style={{ width: "fit-content", marginInline: "auto" }}
             >
