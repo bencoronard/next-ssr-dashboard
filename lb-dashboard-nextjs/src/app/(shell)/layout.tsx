@@ -1,13 +1,17 @@
-import { Box, Grid, Paper, Stack, Typography, useTheme } from "@mui/material";
+"use client";
 import React from "react";
+import { Box, Grid, Paper, useTheme } from "@mui/material";
 import ResponsiveLogo from "@/assets/icons/logo";
 import ThemeButton from "@/modules/common/components/buttons/button_toggle_theme";
-import LoginForm from "../forms/login/login_form";
 
-export default function LoginPage() {
+type ShellLayoutProps = Readonly<{
+  children: React.ReactNode;
+}>;
+
+export default function ShellLayout({ children }: ShellLayoutProps) {
   const theme = useTheme();
   return (
-    <Grid container sx={{ height: "100vh" }}>
+    <Grid container sx={{ height: "100vh", flexWrap: "nowrap" }}>
       <Grid
         item
         sx={{
@@ -32,7 +36,6 @@ export default function LoginPage() {
           <ThemeButton />
         </Box>
       </Grid>
-
       <Grid
         item
         component={Paper}
@@ -40,32 +43,7 @@ export default function LoginPage() {
         square
         sx={{ flex: 1, paddingX: theme.spacing(6), alignContent: "center" }}
       >
-        <Stack spacing={3} alignItems="center">
-          <Box
-            sx={{
-              width: "10em",
-              height: "10em",
-              display: {
-                xs: "block",
-                sm: "none",
-              },
-            }}
-          >
-            <ResponsiveLogo />
-          </Box>
-
-          <Stack spacing={1}>
-            <Typography component="h1" variant="h3" textAlign="center">
-              Loxbit Portal
-            </Typography>
-
-            <Typography component="h2" variant="subtitle1" textAlign="center">
-              Please provide your credentials
-            </Typography>
-          </Stack>
-
-          <LoginForm />
-        </Stack>
+        {children}
       </Grid>
     </Grid>
   );

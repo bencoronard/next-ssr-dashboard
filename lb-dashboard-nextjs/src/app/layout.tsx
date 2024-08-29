@@ -1,5 +1,6 @@
+import React from "react";
 import type { Metadata } from "next";
-import MuiProvider from "@/modules/common/components/mui/mui_provider";
+import MuiProvider from "@/modules/common/components/mui/provider_mui";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -7,11 +8,11 @@ export const metadata: Metadata = {
   description: "Dashboard template using NextJS",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+type RootLayoutProps = Readonly<{
   children: React.ReactNode;
-}>) {
+}>;
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
