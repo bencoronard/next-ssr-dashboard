@@ -1,3 +1,6 @@
+import React from "react";
+import { Observer } from "mobx-react-lite";
+import { useFormik } from "formik";
 import {
   Box,
   Button,
@@ -11,12 +14,9 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { loginContext } from "../../stores/login_context";
-import React from "react";
-import { Observer } from "mobx-react-lite";
-import { useFormik } from "formik";
-import { loginFormInitValue, loginFormValidation } from "./login_schema";
+import { loginContext } from "../../stores/context_login";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { loginFormInitValue, loginFormValidation } from "./schema_login";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import AppleIcon from "@mui/icons-material/Apple";

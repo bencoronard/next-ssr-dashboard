@@ -1,6 +1,3 @@
-"use client";
-import LoginPage from "@/modules/authentication/pages/login_page";
-
 export default function Home() {
-  return <LoginPage />;
+  return <h1>Hello, world!</h1>;
 }
