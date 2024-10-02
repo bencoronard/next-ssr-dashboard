@@ -1,3 +1,4 @@
+"use client";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { Experimental_CssVarsProvider as CssVarsProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
