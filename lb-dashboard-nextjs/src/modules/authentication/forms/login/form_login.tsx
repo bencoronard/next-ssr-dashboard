@@ -33,6 +33,9 @@ const icons = [
 ];
 
 export default function LoginForm() {
+
+  console.log("LoginForm() was rendered here");
+
   const theme = useTheme();
   const context = React.useContext(loginContext);
 

@@ -8,6 +8,7 @@ interface ResponsiveLogoProps {
 }
 
 export default function ResponsiveLogo(props: ResponsiveLogoProps) {
+  console.log("ResponsiveLogo() was rendered here");
   const { variant = "neutral" } = props;
   const [hydrated, setHydrated] = React.useState<boolean>(false);
 

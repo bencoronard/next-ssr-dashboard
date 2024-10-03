@@ -13,6 +13,7 @@ type RootLayoutProps = Readonly<{
 }>;
 
 export default function RootLayout({ children }: RootLayoutProps) {
+  console.log("RootLayout() was rendered here");
   return (
     <html lang="en" suppressHydrationWarning>
       <body>

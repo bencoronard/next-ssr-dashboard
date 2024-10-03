@@ -4,6 +4,9 @@ import ResponsiveLogo from "@/assets/icons/logo";
 import ForgotForm from "../../forms/forgot/form_forgot";
 
 export default function ForgotPage() {
+
+  console.log("ForgotPage() was rendered here");
+
   return (
     <Stack spacing={3} alignItems="center">
       <Box

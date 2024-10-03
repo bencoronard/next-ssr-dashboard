@@ -31,6 +31,9 @@ const icons = [
 ];
 
 export default function ForgotForm() {
+
+  console.log("ForgotForm() was rendered here");
+
   const theme = useTheme();
 
   const form = useFormik({

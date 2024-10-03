@@ -9,6 +9,7 @@ type ShellLayoutProps = Readonly<{
 }>;
 
 export default function ShellLayout({ children }: ShellLayoutProps) {
+  console.log("ShellLayout() was rendered here");
   const theme = useTheme();
   return (
     <Grid container sx={{ height: "100vh", flexWrap: "nowrap" }}>

@@ -4,6 +4,9 @@ import ResponsiveLogo from "@/assets/icons/logo";
 import LoginForm from "../../forms/login/form_login";
 
 export default function LoginPage() {
+
+  console.log("LoginPage() was rendered here");
+
   return (
     <Stack spacing={3} alignItems="center">
       <Box
