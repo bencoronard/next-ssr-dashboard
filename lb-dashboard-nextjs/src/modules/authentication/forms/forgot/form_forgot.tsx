@@ -8,6 +8,7 @@ import {
   Divider,
   FormControl,
   IconButton,
+  Link,
   Stack,
   TextField,
   Typography,
@@ -21,6 +22,7 @@ import {
   forgotPasswordFormInitValue,
   forgotPasswordFormValidation,
 } from "./schema_forgot";
+import NextLink from "next/link";
 
 const iconStyle = { width: "1.5em", height: "1.5em" };
 const icons = [
@@ -31,7 +33,6 @@ const icons = [
 ];
 
 export default function ForgotForm() {
-
   console.log("ForgotForm() was rendered here");
 
   const theme = useTheme();
@@ -77,6 +78,25 @@ export default function ForgotForm() {
                 Submit
               </Button>
             </FormControl>
+
+            <Divider />
+
+            <NextLink
+              href="/login"
+              passHref
+              style={{ width: "fit-content", marginInline: "auto" }}
+            >
+              <Link
+                component={IconButton}
+                underline="none"
+                textAlign="center"
+                sx={{
+                  borderRadius: theme.vars.shape.borderRadius,
+                }}
+              >
+                Back to sign-in
+              </Link>
+            </NextLink>
           </Stack>
         </Box>
       )}
