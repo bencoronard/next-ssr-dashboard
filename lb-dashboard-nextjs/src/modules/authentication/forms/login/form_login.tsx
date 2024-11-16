@@ -33,7 +33,6 @@ const icons = [
 ];
 
 export default function LoginForm() {
-
   console.log("LoginForm() was rendered here");
 
   const theme = useTheme();
@@ -109,7 +108,7 @@ export default function LoginForm() {
               <Button
                 variant="contained"
                 type="submit"
-                onClick={() => form.submitForm()}
+                onClick={form.submitForm}
               >
                 Submit
               </Button>

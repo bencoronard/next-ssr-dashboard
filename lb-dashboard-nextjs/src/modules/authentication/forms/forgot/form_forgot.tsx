@@ -73,7 +73,7 @@ export default function ForgotForm() {
               <Button
                 variant="contained"
                 type="submit"
-                onClick={() => form.submitForm()}
+                onClick={form.submitForm}
               >
                 Submit
               </Button>
