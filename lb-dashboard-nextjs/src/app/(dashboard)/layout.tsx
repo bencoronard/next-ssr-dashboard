@@ -15,26 +15,12 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         item
         sx={{
           position: "relative",
-          flex: 1.5,
+          flex: 0.5,
           alignContent: "center",
           backgroundColor: theme.vars.palette.primary.main,
           display: { xs: "none", sm: "block" },
         }}
-      >
-        <Box
-          sx={{
-            width: "15em",
-            height: "15em",
-            margin: "0 auto",
-          }}
-        >
-          <ResponsiveLogo variant="light" />
-        </Box>
-
-        <Box sx={{ position: "absolute", bottom: 0, left: 0 }}>
-          <ThemeButton />
-        </Box>
-      </Grid>
+      ></Grid>
       <Grid
         item
         component={Paper}
