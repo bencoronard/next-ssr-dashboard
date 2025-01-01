@@ -1,6 +1,5 @@
-import ResponsiveLogo from "@/assets/icons/logo";
-import ThemeButton from "@/modules/common/components/buttons/button_toggle_theme";
-import { Box, Grid, Paper, useTheme } from "@mui/material";
+"use client";
+import { Grid, Paper, useTheme } from "@mui/material";
 
 type DashboardLayoutProps = Readonly<{
   children: React.ReactNode;
