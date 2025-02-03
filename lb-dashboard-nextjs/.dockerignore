@@ -1,0 +1,33 @@
+# Ignore node modules and dependencies
+node_modules
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+.pnpm-store
+.next/cache
+.next/standalone/node_modules
+
+# Ignore environment variables and build files
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Ignore logs and temporary files
+logs
+*.log
+*.log.*
+.DS_Store
+*.swp
+*.swo
+
+# Ignore Git and editor files
+.git
+.gitignore
+.idea
+.vscode
+
+# Ignore Docker files
+Dockerfile
+docker-compose.yml
