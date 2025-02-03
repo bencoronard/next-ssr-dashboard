@@ -4,12 +4,12 @@ import { Box, Grid, Paper, useTheme } from "@mui/material";
 import ResponsiveLogo from "@/assets/icons/logo";
 import ThemeButton from "@/modules/common/components/buttons/button_toggle_theme";
 
-type ShellLayoutProps = Readonly<{
+type SplitLayoutProps = Readonly<{
   children: React.ReactNode;
 }>;
 
-export default function ShellLayout({ children }: ShellLayoutProps) {
-  console.log("ShellLayout() was rendered here");
+export default function SplitLayout({ children }: SplitLayoutProps) {
+  console.log("SplitLayout() was rendered here");
   const theme = useTheme();
   return (
     <Grid container sx={{ height: "100vh", flexWrap: "nowrap" }}>
