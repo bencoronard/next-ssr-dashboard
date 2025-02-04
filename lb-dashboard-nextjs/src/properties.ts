@@ -8,13 +8,13 @@ const properties = {
   http: {
     client: {
       timeout: Number.parseInt(
-        process.env.APP_HTTP_CLIENT_TIMEOUT || "10000",
+        process.env.NEXT_PUBLIC_HTTP_CLIENT_TIMEOUT || "10000",
         10
       ),
     },
   },
   portal: {
-    baseUrl: process.env.PORTAL_BASE_URL || "http://localhost:3000",
+    baseUrl: process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:80",
   },
 };
 
