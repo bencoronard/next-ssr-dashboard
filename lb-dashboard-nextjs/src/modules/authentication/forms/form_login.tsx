@@ -48,7 +48,6 @@ export default function LoginForm() {
     validationSchema: loginFormValidation,
     onSubmit: async (values, { resetForm }) => {
       await context.login(values.username, values.password);
-      context.showContext();
       resetForm();
     },
     validateOnChange: false,

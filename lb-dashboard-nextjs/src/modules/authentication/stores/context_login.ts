@@ -1,6 +1,6 @@
 import React from "react";
 import { makeAutoObservable } from "mobx";
-import { authenticate } from "../routes/route_login";
+import { createSession } from "../api/route_authentication";
 
 class LoginContext {
   username: string = "";
@@ -24,15 +24,11 @@ class LoginContext {
   async login(username: string, password: string) {
     this.setIsLoading(true);
     try {
-      await authenticate({ username, password });
+      await createSession({ username, password });
     } catch (error) {
     } finally {
       this.setIsLoading(false);
     }
-  }
-
-  showContext() {
-    console.log(`Username: ${this.username}, Password: ${this.password}`);
   }
 }
 

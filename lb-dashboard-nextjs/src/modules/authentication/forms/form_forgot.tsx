@@ -32,7 +32,6 @@ export default function ForgotForm() {
     validationSchema: forgotPasswordFormValidation,
     onSubmit: async (values, { resetForm }) => {
       await context.forgot(values.username);
-      context.showContext();
       resetForm();
     },
     validateOnChange: false,
