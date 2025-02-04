@@ -14,33 +14,25 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GoogleIcon from "@mui/icons-material/Google";
-import AppleIcon from "@mui/icons-material/Apple";
-import MicrosoftIcon from "@mui/icons-material/Microsoft";
 import {
   forgotPasswordFormInitValue,
   forgotPasswordFormValidation,
-} from "./schema_forgot";
+} from "../schemas/schema_forgot";
 import NextLink from "next/link";
-
-const iconStyle = { width: "1.5em", height: "1.5em" };
-const icons = [
-  { component: FacebookIcon, onClick: () => alert("Facebook clicked") },
-  { component: GoogleIcon, onClick: () => alert("Google clicked") },
-  { component: MicrosoftIcon, onClick: () => alert("Microsoft clicked") },
-  { component: AppleIcon, onClick: () => alert("Apple clicked") },
-];
+import { forgotContext } from "../stores/context_forgot";
 
 export default function ForgotForm() {
   console.log("ForgotForm() was rendered here");
 
   const theme = useTheme();
+  const context = React.useContext(forgotContext);
 
   const form = useFormik({
     initialValues: forgotPasswordFormInitValue,
     validationSchema: forgotPasswordFormValidation,
-    onSubmit: async (_values, { resetForm }) => {
+    onSubmit: async (values, { resetForm }) => {
+      await context.forgot(values.username);
+      context.showContext();
       resetForm();
     },
     validateOnChange: false,

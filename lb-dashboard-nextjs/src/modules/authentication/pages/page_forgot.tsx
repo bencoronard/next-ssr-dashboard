@@ -1,10 +1,9 @@
 import React from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import ResponsiveLogo from "@/assets/icons/logo";
-import ForgotForm from "../../forms/forgot/form_forgot";
+import ForgotForm from "../forms/form_forgot";
 
 export default function ForgotPage() {
-
   console.log("ForgotPage() was rendered here");
 
   return (
