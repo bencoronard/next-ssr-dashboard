@@ -7,8 +7,8 @@ export type RecoveryRequestBody = {
   username: string;
 };
 
-export type LoginResponseData = null;
+export type LoginResponseData = String;
 
-export type LogoutResponseData = null;
+export type LogoutResponseData = String;
 
-export type RecoveryResponseData = null;
+export type RecoveryResponseData = String;
