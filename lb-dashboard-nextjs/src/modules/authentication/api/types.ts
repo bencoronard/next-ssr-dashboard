@@ -3,7 +3,7 @@ export type LoginRequestBody = {
   password: string;
 };
 
-export type ForgotRequestBody = {
+export type RecoveryRequestBody = {
   username: string;
 };
 
@@ -11,4 +11,4 @@ export type LoginResponseData = null;
 
 export type LogoutResponseData = null;
 
-export type ForgotResponseData = null;
+export type RecoveryResponseData = null;

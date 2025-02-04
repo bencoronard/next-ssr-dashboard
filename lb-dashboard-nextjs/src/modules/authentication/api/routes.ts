@@ -1,11 +1,11 @@
 import httpClient from "@/modules/common/http/client";
 import { GlobalApiResponseBody } from "@/modules/common/http/types";
 import {
-  ForgotRequestBody,
-  ForgotResponseData,
   LoginRequestBody,
   LoginResponseData,
   LogoutResponseData,
+  RecoveryRequestBody,
+  RecoveryResponseData,
 } from "./types";
 
 export async function createSession(body: LoginRequestBody) {
@@ -18,7 +18,10 @@ export async function deleteSession() {
   return httpClient.delete<GlobalApiResponseBody<LogoutResponseData>>(path);
 }
 
-export async function recover(body: ForgotRequestBody) {
+export async function recover(body: RecoveryRequestBody) {
   const path = "/api/v1/recovery";
-  return httpClient.post<GlobalApiResponseBody<ForgotResponseData>>(path, body);
+  return httpClient.post<GlobalApiResponseBody<RecoveryResponseData>>(
+    path,
+    body
+  );
 }
