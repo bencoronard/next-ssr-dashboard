@@ -7,7 +7,7 @@ const httpClient = axios.create({
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
-    // "X-API-KEY": properties.server.secretKey,
+    // "X-API-KEY": "Mammoth1234",
   },
   xsrfCookieName: "XSRF-TOKEN",
   xsrfHeaderName: "X-CSRF-TOKEN",
