@@ -133,7 +133,7 @@ export default function LoginForm() {
             <Divider />
 
             <NextLink
-              href="/forgot"
+              href="/recover"
               passHref
               style={{ width: "fit-content", marginInline: "auto" }}
             >
