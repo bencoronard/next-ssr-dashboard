@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import ResponsiveLogo from "@/assets/icons/logo";
-import LoginForm from "../forms/form_login";
+import LoginForm from "../forms/login";
 
 export default function LoginPage() {
   console.log("LoginPage() was rendered here");

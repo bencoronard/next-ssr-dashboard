@@ -1,17 +1,13 @@
 import React from "react";
 import { makeAutoObservable } from "mobx";
-import { createSession } from "../api/route_authentication";
+import { recover } from "../api/routes";
 
-class LoginContext {
+class RecoveryContext {
   username: string = "";
-  password: string = "";
   isLoading: boolean = false;
 
   setUsername(username: string) {
     this.username = username;
-  }
-  setPassword(password: string) {
-    this.password = password;
   }
   setIsLoading(isLoading: boolean) {
     this.isLoading = isLoading;
@@ -21,10 +17,10 @@ class LoginContext {
     makeAutoObservable(this);
   }
 
-  async login(username: string, password: string) {
+  async recover(username: string) {
     this.setIsLoading(true);
     try {
-      await createSession({ username, password });
+      await recover({ username: username });
     } catch (error) {
     } finally {
       this.setIsLoading(false);
@@ -32,4 +28,4 @@ class LoginContext {
   }
 }
 
-export const loginContext = React.createContext(new LoginContext());
+export const recoveryContext = React.createContext(new RecoveryContext());

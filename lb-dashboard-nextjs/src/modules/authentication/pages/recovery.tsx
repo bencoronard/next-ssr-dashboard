@@ -1,10 +1,10 @@
 import React from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import ResponsiveLogo from "@/assets/icons/logo";
-import ForgotForm from "../forms/form_forgot";
+import RecoveryForm from "../forms/recovery";
 
-export default function ForgotPage() {
-  console.log("ForgotPage() was rendered here");
+export default function RecoveryPage() {
+  console.log("RecoveryPage() was rendered here");
 
   return (
     <Stack spacing={3} alignItems="center">
@@ -31,7 +31,7 @@ export default function ForgotPage() {
         </Typography>
       </Stack>
 
-      <ForgotForm />
+      <RecoveryForm />
     </Stack>
   );
 }

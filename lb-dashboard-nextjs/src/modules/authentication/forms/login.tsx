@@ -15,12 +15,9 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { loginContext } from "../stores/context_login";
+import { loginContext } from "../stores/login";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import {
-  loginFormInitValue,
-  loginFormValidation,
-} from "../schemas/schema_login";
+import { loginFormInitValue, loginFormValidation } from "../schemas/login";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import AppleIcon from "@mui/icons-material/Apple";

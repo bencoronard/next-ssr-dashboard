@@ -14,24 +14,24 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import {
-  forgotPasswordFormInitValue,
-  forgotPasswordFormValidation,
-} from "../schemas/schema_forgot";
 import NextLink from "next/link";
-import { forgotContext } from "../stores/context_forgot";
+import { recoveryContext } from "../stores/recovery";
+import {
+  recoveryFormInitValue,
+  recoveryFormValidation,
+} from "../schemas/recovery";
 
-export default function ForgotForm() {
-  console.log("ForgotForm() was rendered here");
+export default function RecoveryForm() {
+  console.log("RecoveryForm() was rendered here");
 
   const theme = useTheme();
-  const context = React.useContext(forgotContext);
+  const context = React.useContext(recoveryContext);
 
   const form = useFormik({
-    initialValues: forgotPasswordFormInitValue,
-    validationSchema: forgotPasswordFormValidation,
+    initialValues: recoveryFormInitValue,
+    validationSchema: recoveryFormValidation,
     onSubmit: async (values, { resetForm }) => {
-      await context.forgot(values.username);
+      await context.recover(values.username);
       resetForm();
     },
     validateOnChange: false,

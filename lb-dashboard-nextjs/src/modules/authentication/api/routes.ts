@@ -6,7 +6,7 @@ import {
   LoginRequestBody,
   LoginResponseData,
   LogoutResponseData,
-} from "../types/type_authentication";
+} from "./types";
 
 export async function createSession(body: LoginRequestBody) {
   const path = "/api/v1/sessions";
