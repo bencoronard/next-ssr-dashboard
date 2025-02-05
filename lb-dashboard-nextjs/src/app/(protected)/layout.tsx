@@ -1,7 +1,16 @@
 "use client";
 import React from "react";
-import { Drawer, Grid, useTheme } from "@mui/material";
+import {
+  AppBar,
+  Drawer,
+  Grid,
+  IconButton,
+  Toolbar,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import NavigationList from "@/modules/common/components/sidebar/navigation_list";
+import MenuIcon from "@mui/icons-material/Menu";
 
 type DashboardLayoutProps = Readonly<{
   children: React.ReactNode;
@@ -77,8 +86,29 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         </Drawer>
       </Grid>
 
-      <Grid item xs>
-        {children}
+      <Grid container direction="column">
+        <AppBar component="div" position="relative">
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2, display: { sm: "none" } }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap component="div">
+              Responsive drawer
+            </Typography>
+          </Toolbar>
+        </AppBar>
+
+        <Grid item sx={{ border: "1px dashed red" }}>
+          <h1>Hello</h1>
+        </Grid>
+
+        <Grid item>{children}</Grid>
       </Grid>
     </Grid>
   );
