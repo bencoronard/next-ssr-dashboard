@@ -9,11 +9,11 @@ import {
   IconButton,
   Toolbar,
   Typography,
-  useTheme,
 } from "@mui/material";
 import NavigationList from "@/modules/common/components/sidebar/navigation_list";
 import MenuIcon from "@mui/icons-material/Menu";
 import UserBadge from "@/modules/common/components/header/user_badge";
+import ResponsiveLogo from "@/assets/icons/logo";
 
 type DashboardLayoutProps = Readonly<{
   children: React.ReactNode;
@@ -22,7 +22,6 @@ type DashboardLayoutProps = Readonly<{
 const drawerWidth = 240;
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
-  const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
 
@@ -65,8 +64,16 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           }}
           open
         >
-          <Toolbar />
+          <Toolbar sx={{ display: "flex", gap: "1em" }}>
+            <Box sx={{ width: "3em", height: "3em" }}>
+              <ResponsiveLogo variant="neutral" />
+            </Box>
+
+            <Typography variant="h6">Loxbit Portal</Typography>
+          </Toolbar>
+
           <Divider />
+
           <NavigationList />
         </Drawer>
 
@@ -86,8 +93,16 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             },
           }}
         >
-          <Toolbar />
+          <Toolbar sx={{ display: "flex", gap: "1em" }}>
+            <Box sx={{ width: "3em", height: "3em" }}>
+              <ResponsiveLogo variant="neutral" />
+            </Box>
+
+            <Typography variant="h6">Loxbit Portal</Typography>
+          </Toolbar>
+
           <Divider />
+
           <NavigationList />
         </Drawer>
       </Grid>
@@ -97,7 +112,6 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           <Toolbar>
             <IconButton
               color="inherit"
-              aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
               sx={{ mr: 2, display: { sm: "none" } }}
@@ -111,11 +125,19 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           </Toolbar>
         </AppBar>
 
-        {/* <Grid item sx={{ border: "1px dashed red" }}>
-          <h1>Hello</h1>
+        <Grid
+          item
+          direction="column"
+          sx={{
+            display: "flex",
+            flex: 1,
+            padding: "1.5em",
+            gap: "1em",
+            backgroundColor: "#D3D3D3",
+          }}
+        >
+          {children}
         </Grid>
-
-        <Grid item>{children}</Grid> */}
       </Grid>
     </Grid>
   );
