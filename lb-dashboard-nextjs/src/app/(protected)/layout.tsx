@@ -2,6 +2,8 @@
 import React from "react";
 import {
   AppBar,
+  Box,
+  Divider,
   Drawer,
   Grid,
   IconButton,
@@ -11,6 +13,7 @@ import {
 } from "@mui/material";
 import NavigationList from "@/modules/common/components/sidebar/navigation_list";
 import MenuIcon from "@mui/icons-material/Menu";
+import UserBadge from "@/modules/common/components/header/user_badge";
 
 type DashboardLayoutProps = Readonly<{
   children: React.ReactNode;
@@ -46,7 +49,6 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         sx={{
           width: { sm: drawerWidth },
           flexShrink: { sm: 0 },
-          border: "1px dashed red",
         }}
       >
         <Drawer
@@ -63,6 +65,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           }}
           open
         >
+          <Toolbar />
+          <Divider />
           <NavigationList />
         </Drawer>
 
@@ -82,6 +86,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             },
           }}
         >
+          <Toolbar />
+          <Divider />
           <NavigationList />
         </Drawer>
       </Grid>
@@ -98,17 +104,18 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap component="div">
-              Responsive drawer
-            </Typography>
+
+            <Box sx={{ marginLeft: "auto" }}>
+              <UserBadge />
+            </Box>
           </Toolbar>
         </AppBar>
 
-        <Grid item sx={{ border: "1px dashed red" }}>
+        {/* <Grid item sx={{ border: "1px dashed red" }}>
           <h1>Hello</h1>
         </Grid>
 
-        <Grid item>{children}</Grid>
+        <Grid item>{children}</Grid> */}
       </Grid>
     </Grid>
   );
