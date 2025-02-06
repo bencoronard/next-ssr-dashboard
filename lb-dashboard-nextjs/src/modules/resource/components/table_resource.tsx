@@ -151,7 +151,7 @@ export default function ResourceTable(props: ResourceTableProps) {
                                     {props.allowEdit && (
                                       <>
                                         {context.isLoading.read &&
-                                        context.focused?.id === row.id ? (
+                                        context.focusedId === row.id ? (
                                           <CircularProgress
                                             size="1em"
                                             color="inherit"
@@ -168,7 +168,7 @@ export default function ResourceTable(props: ResourceTableProps) {
                                     {props.allowDelete && (
                                       <>
                                         {context.isLoading.delete &&
-                                        context.focused?.id === row.id ? (
+                                        context.focusedId === row.id ? (
                                           <CircularProgress
                                             size="1em"
                                             color="inherit"
