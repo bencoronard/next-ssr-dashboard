@@ -129,6 +129,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           item
           direction="column"
           sx={{
+            overflow: "scroll",
             display: "flex",
             flex: 1,
             padding: "1.5em",
