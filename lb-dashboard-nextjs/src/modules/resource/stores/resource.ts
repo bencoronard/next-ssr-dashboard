@@ -1,7 +1,13 @@
 import React from "react";
 import { makeAutoObservable } from "mobx";
 import { Resource } from "../models/types";
-import { listResources, readResource } from "../api/routes";
+import {
+  createResource,
+  deleteResource,
+  listResources,
+  readResource,
+  updateResource,
+} from "../api/routes";
 import { pauseExecution } from "@/modules/common/utilities/executionFlow";
 
 const mockData: Resource[] = [
@@ -49,7 +55,7 @@ const mockData: Resource[] = [
 
 class ResourceContext {
   resources: Resource[] = [];
-  focused: Resource | null = null;
+  focusedId: number | null = null;
   isLoading: {
     create: boolean;
     update: boolean;
@@ -67,14 +73,23 @@ class ResourceContext {
   setResources(resources: Resource[]) {
     this.resources = resources;
   }
-  setFocused(resource: Resource) {
-    this.focused = resource;
+  setFocused(resourceId: number | null) {
+    this.focusedId = resourceId;
   }
   setLoadingList(loading: boolean) {
     this.isLoading.list = loading;
   }
   setLoadingRead(loading: boolean) {
     this.isLoading.read = loading;
+  }
+  setLoadingCreate(loading: boolean) {
+    this.isLoading.create = loading;
+  }
+  setLoadingUpdate(loading: boolean) {
+    this.isLoading.update = loading;
+  }
+  setLoadingDelete(loading: boolean) {
+    this.isLoading.delete = loading;
   }
 
   constructor() {
@@ -84,8 +99,8 @@ class ResourceContext {
   async listResources() {
     this.setLoadingList(true);
     try {
-      // const response = await listResources();
-      // this.setResources(response.data.data);
+      // const resources = (await listResources()).data.data;
+      // this.setResources(resources)
       await pauseExecution(500);
       this.setResources(mockData);
     } catch (error) {
@@ -95,15 +110,64 @@ class ResourceContext {
     }
   }
 
-  async readResource(id: string) {
+  async readResource(id: number) {
     this.setLoadingRead(true);
     try {
-      const response = await readResource(id);
-      this.setFocused(response.data.data);
+      // const resource = (await readResource(id)).data.data;
+      // this.setFocused(resource.id);
+      // return resource;
+      await pauseExecution(500);
+      const resource = mockData.find((item) => item.id === id);
+      this.setFocused(resource ? resource.id : null);
+      return resource;
     } catch (error) {
       throw error;
     } finally {
       this.setLoadingRead(false);
+    }
+  }
+
+  async createResource(field1: string, field2: string, field3: string) {
+    this.setLoadingCreate(true);
+    try {
+      // const createdId = (await createResource({ field1, field2, field3 })).data.data;
+      // return createdId;
+      await pauseExecution(500);
+    } catch (error) {
+      throw error;
+    } finally {
+      this.setLoadingCreate(false);
+    }
+  }
+
+  async updateResource(
+    id: number,
+    field1: string,
+    field2: string,
+    field3: string
+  ) {
+    this.setLoadingUpdate(true);
+    try {
+      // const updatedId = (await updateResource(id, { field1, field2, field3 })).data.data;
+      // return updatedId;
+      await pauseExecution(500);
+    } catch (error) {
+      throw error;
+    } finally {
+      this.setLoadingUpdate(false);
+    }
+  }
+
+  async deleteResource(id: number) {
+    this.setLoadingDelete(true);
+    try {
+      // const deletedId = (await deleteResource(id)).data.data;
+      // return deletedId;
+      await pauseExecution(500);
+    } catch (error) {
+      throw error;
+    } finally {
+      this.setLoadingDelete(false);
     }
   }
 }

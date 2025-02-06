@@ -18,13 +18,13 @@ export async function createResource(body: CreateResourceRequestBody) {
   );
 }
 
-export async function readResource(id: string) {
+export async function readResource(id: number) {
   const path = `/api/v1/resources/${id}`;
   return httpClient.get<GlobalApiResponseBody<ReadResourceResponseData>>(path);
 }
 
 export async function updateResource(
-  id: string,
+  id: number,
   body: UpdateResourceRequestBody
 ) {
   const path = `/api/v1/resources/${id}`;
@@ -34,7 +34,7 @@ export async function updateResource(
   );
 }
 
-export async function deleteResource(id: string) {
+export async function deleteResource(id: number) {
   const path = `/api/v1/resources/${id}`;
   return httpClient.delete<GlobalApiResponseBody<DeleteResourceResponseData>>(
     path
