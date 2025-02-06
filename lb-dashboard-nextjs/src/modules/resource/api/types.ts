@@ -1,6 +1,9 @@
 import { Resource } from "../models/types";
 
-export type CreateResourceRequestBody = Omit<Resource, "id">;
+export type CreateResourceRequestBody = Omit<
+  Resource,
+  "id" | "tenant" | "createdBy"
+>;
 export type UpdateResourceRequestBody = Partial<CreateResourceRequestBody>;
 
 export type CreateResourceResponseData = String;
