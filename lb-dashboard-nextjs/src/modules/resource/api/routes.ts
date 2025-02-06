@@ -3,6 +3,7 @@ import {
   CreateResourceRequestBody,
   CreateResourceResponseData,
   DeleteResourceResponseData,
+  ListResourceResponseData,
   ReadResourceResponseData,
   UpdateResourceRequestBody,
   UpdateResourceResponseData,
@@ -40,7 +41,7 @@ export async function deleteResource(id: string) {
   );
 }
 
-export async function listResources(id: string) {
+export async function listResources() {
   const path = `/api/v1/resources`;
-  return httpClient.get<GlobalApiResponseBody<ReadResourceResponseData>>(path);
+  return httpClient.get<GlobalApiResponseBody<ListResourceResponseData>>(path);
 }

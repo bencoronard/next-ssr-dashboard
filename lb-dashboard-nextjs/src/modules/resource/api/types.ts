@@ -5,5 +5,6 @@ export type UpdateResourceRequestBody = Partial<CreateResourceRequestBody>;
 
 export type CreateResourceResponseData = String;
 export type ReadResourceResponseData = Resource;
+export type ListResourceResponseData = Resource[];
 export type UpdateResourceResponseData = String;
 export type DeleteResourceResponseData = String;
