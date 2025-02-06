@@ -20,7 +20,7 @@ class RecoveryContext {
   async recover(username: string) {
     this.setIsLoading(true);
     try {
-      await recover({ username: username });
+      await recover({ username });
     } catch (error) {
     } finally {
       this.setIsLoading(false);
