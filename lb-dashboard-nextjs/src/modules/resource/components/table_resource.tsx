@@ -4,6 +4,7 @@ import {
   Button,
   CircularProgress,
   FormControl,
+  IconButton,
   Paper,
   Stack,
   Table,
@@ -69,6 +70,18 @@ export default function ResourceTable(props: ResourceTableProps) {
   };
   const handleRefresh = async () => {
     await context.listResources();
+  };
+  const handleReadResource = async (id: number) => {
+    try {
+      const resource = await context.readResource(id);
+      alert(`Data: ${JSON.stringify(resource)}`);
+    } catch (error) {}
+  };
+  const handleDeleteResource = async (id: number) => {
+    try {
+      const resourceId = await context.deleteResource(id);
+      alert(`Resource ${resourceId} deleted`);
+    } catch (error) {}
   };
 
   React.useEffect(() => {
@@ -144,7 +157,6 @@ export default function ResourceTable(props: ResourceTableProps) {
                                   <Box
                                     sx={{
                                       display: "flex",
-                                      gap: "0.5em",
                                       justifyContent: "center",
                                     }}
                                   >
@@ -152,15 +164,23 @@ export default function ResourceTable(props: ResourceTableProps) {
                                       <>
                                         {context.isLoading.read &&
                                         context.focusedId === row.id ? (
-                                          <CircularProgress
-                                            size="1em"
-                                            color="inherit"
-                                          />
+                                          <IconButton disabled>
+                                            <CircularProgress
+                                              size="0.75em"
+                                              color="inherit"
+                                            />
+                                          </IconButton>
                                         ) : (
-                                          <EditIcon
-                                            color="disabled"
-                                            fontSize="small"
-                                          />
+                                          <IconButton
+                                            onClick={() =>
+                                              handleReadResource(row.id)
+                                            }
+                                          >
+                                            <EditIcon
+                                              color="disabled"
+                                              fontSize="small"
+                                            />
+                                          </IconButton>
                                         )}
                                       </>
                                     )}
@@ -169,15 +189,23 @@ export default function ResourceTable(props: ResourceTableProps) {
                                       <>
                                         {context.isLoading.delete &&
                                         context.focusedId === row.id ? (
-                                          <CircularProgress
-                                            size="1em"
-                                            color="inherit"
-                                          />
+                                          <IconButton disabled>
+                                            <CircularProgress
+                                              size="0.75em"
+                                              color="inherit"
+                                            />
+                                          </IconButton>
                                         ) : (
-                                          <DeleteIcon
-                                            color="disabled"
-                                            fontSize="small"
-                                          />
+                                          <IconButton
+                                            onClick={() =>
+                                              handleDeleteResource(row.id)
+                                            }
+                                          >
+                                            <DeleteIcon
+                                              color="disabled"
+                                              fontSize="small"
+                                            />
+                                          </IconButton>
                                         )}
                                       </>
                                     )}
