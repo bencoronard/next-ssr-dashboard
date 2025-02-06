@@ -2,6 +2,7 @@ import { Box, Typography } from "@mui/material";
 
 export default function UserBadge() {
   console.log("UserBadge() was rendered here");
+
   return (
     <Box
       sx={{

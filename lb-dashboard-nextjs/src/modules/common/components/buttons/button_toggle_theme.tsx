@@ -5,6 +5,7 @@ import { useColorScheme } from "@mui/material/styles";
 
 export default function ThemeButton() {
   console.log("ThemeButton() was rendered here");
+
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
 

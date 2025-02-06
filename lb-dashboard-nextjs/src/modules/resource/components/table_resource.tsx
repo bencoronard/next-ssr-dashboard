@@ -54,6 +54,8 @@ type ResourceTableProps = {
 };
 
 export default function ResourceTable(props: ResourceTableProps) {
+  console.log("ResourceTable() was rendered here");
+
   const context = React.useContext(resourceContext);
 
   const [page, setPage] = React.useState(0);

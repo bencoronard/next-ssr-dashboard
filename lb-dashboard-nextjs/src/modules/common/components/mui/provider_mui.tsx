@@ -8,7 +8,6 @@ import theme from "@/themes/theme";
 export default function MuiProvider({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-
   console.log("MuiProvider() was rendered here");
 
   return (
