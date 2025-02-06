@@ -2,6 +2,50 @@ import React from "react";
 import { makeAutoObservable } from "mobx";
 import { Resource } from "../models/types";
 import { listResources, readResource } from "../api/routes";
+import { pauseExecution } from "@/modules/common/utilities/executionFlow";
+
+const mockData: Resource[] = [
+  {
+    id: 1,
+    field1: "Alpha",
+    field2: "Beta",
+    field3: "Gamma",
+    tenant: "Tenant A",
+    createdBy: "User 1",
+  },
+  {
+    id: 2,
+    field1: "Delta",
+    field2: "Epsilon",
+    field3: "Zeta",
+    tenant: "Tenant B",
+    createdBy: "User 2",
+  },
+  {
+    id: 3,
+    field1: "Eta",
+    field2: "Theta",
+    field3: "Iota",
+    tenant: "Tenant C",
+    createdBy: "User 3",
+  },
+  {
+    id: 4,
+    field1: "Kappa",
+    field2: "Lambda",
+    field3: "Mu",
+    tenant: "Tenant D",
+    createdBy: "User 4",
+  },
+  {
+    id: 5,
+    field1: "Nu",
+    field2: "Xi",
+    field3: "Omicron",
+    tenant: "Tenant E",
+    createdBy: "User 5",
+  },
+];
 
 class ResourceContext {
   resources: Resource[] = [];
@@ -40,8 +84,10 @@ class ResourceContext {
   async listResources() {
     this.setLoadingList(true);
     try {
-      const response = await listResources();
-      this.setResources(response.data.data);
+      // const response = await listResources();
+      // this.setResources(response.data.data);
+      await pauseExecution(500);
+      this.setResources(mockData);
     } catch (error) {
       throw error;
     } finally {
