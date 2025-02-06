@@ -112,18 +112,18 @@ class ResourceContext {
 
   async readResource(id: number) {
     this.setLoadingRead(true);
+    this.setFocused(id);
     try {
       // const resource = (await readResource(id)).data.data;
       // this.setFocused(resource.id);
       // return resource;
       await pauseExecution(500);
-      const resource = mockData.find((item) => item.id === id);
-      this.setFocused(resource ? resource.id : null);
-      return resource;
+      return mockData.find((item) => item.id === id);
     } catch (error) {
       throw error;
     } finally {
       this.setLoadingRead(false);
+      this.setFocused(null);
     }
   }
 
@@ -147,6 +147,7 @@ class ResourceContext {
     field3: string
   ) {
     this.setLoadingUpdate(true);
+    this.setFocused(id);
     try {
       // const updatedId = (await updateResource(id, { field1, field2, field3 })).data.data;
       // return updatedId;
@@ -155,11 +156,13 @@ class ResourceContext {
       throw error;
     } finally {
       this.setLoadingUpdate(false);
+      this.setFocused(null);
     }
   }
 
   async deleteResource(id: number) {
     this.setLoadingDelete(true);
+    this.setFocused(id);
     try {
       // const deletedId = (await deleteResource(id)).data.data;
       // return deletedId;
@@ -168,6 +171,7 @@ class ResourceContext {
       throw error;
     } finally {
       this.setLoadingDelete(false);
+      this.setFocused(null);
     }
   }
 }
