@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import {
   Button,
   Dialog,
@@ -8,7 +9,6 @@ import {
   DialogTitle,
   TextField,
 } from "@mui/material";
-import React from "react";
 
 type FormDialogProps = {
   open: boolean;
@@ -33,21 +33,7 @@ export default function FormDialog(props: FormDialogProps) {
         Open form dialog
       </Button>
 
-      <Dialog
-        open={props.open}
-        onClose={handleClose}
-        PaperProps={{
-          component: "form",
-          onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
-            event.preventDefault();
-            const formData = new FormData(event.currentTarget);
-            const formJson = Object.fromEntries((formData as any).entries());
-            const email = formJson.email;
-            console.log(email);
-            handleClose();
-          },
-        }}
-      >
+      <Dialog open={props.open} onClose={handleClose}>
         <DialogTitle>{props.title}</DialogTitle>
 
         <DialogContent>

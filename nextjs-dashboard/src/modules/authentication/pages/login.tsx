@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import ResponsiveLogo from "@/assets/icons/logo";
 import LoginForm from "../forms/login";

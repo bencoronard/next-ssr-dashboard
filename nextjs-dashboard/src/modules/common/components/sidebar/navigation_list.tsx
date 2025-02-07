@@ -1,4 +1,3 @@
-import React from "react";
 import { List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 
 type NavigationListProps = {};

@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Grid2 as Grid, Paper } from "@mui/material";
 import ResponsiveLogo from "@/assets/icons/logo";
 import ThemeButton from "@/modules/common/components/buttons/button_toggle_theme";
