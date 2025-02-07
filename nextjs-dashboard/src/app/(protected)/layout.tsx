@@ -22,6 +22,8 @@ type DashboardLayoutProps = Readonly<{
 const drawerWidth = 240;
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
+  console.log("DashboardLayout() was rendered here");
+
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
 
@@ -103,7 +105,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         </Drawer>
       </Grid>
 
-      <Grid container direction="column">
+      <Grid container direction="column" flexGrow={1}>
         <AppBar component="div" position="relative">
           <Toolbar>
             <IconButton
@@ -122,10 +124,10 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         </AppBar>
 
         <Grid
-          direction="column"
           sx={{
-            overflow: "scroll",
+            overflowY: "auto",
             display: "flex",
+            flexDirection: "column",
             flex: 1,
             padding: "1.5em",
             gap: "1em",

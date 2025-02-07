@@ -79,6 +79,7 @@ export default function LoginForm() {
               <Typography component="h2" variant="body1">
                 Password
               </Typography>
+
               <FormControl fullWidth>
                 <TextField
                   placeholder="Enter password"
@@ -90,14 +91,16 @@ export default function LoginForm() {
                   }}
                   error={!!form.errors.password}
                   helperText={form.errors.password}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton onClick={handleClickShowPassword}>
-                          {showPassword ? <Visibility /> : <VisibilityOff />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
+                  slotProps={{
+                    input: {
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton onClick={handleClickShowPassword}>
+                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    },
                   }}
                 />
               </FormControl>
@@ -108,8 +111,9 @@ export default function LoginForm() {
                 variant="contained"
                 type="submit"
                 onClick={form.submitForm}
+                loading={context.isLoading}
               >
-                {context.isLoading ? "Loading" : "Submit"}
+                Submit
               </Button>
             </FormControl>
 

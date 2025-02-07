@@ -21,6 +21,7 @@ import { resourceContext } from "../stores/resource";
 import { Observer } from "mobx-react-lite";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { ShoppingCart } from "@mui/icons-material";
 
 interface Column {
   id:
@@ -55,6 +56,7 @@ type ResourceTableProps = {
 
 export default function ResourceTable(props: ResourceTableProps) {
   console.log("ResourceTable() was rendered here");
+  const [loading, setLoading] = React.useState(false);
 
   const context = React.useContext(resourceContext);
 
@@ -105,13 +107,9 @@ export default function ResourceTable(props: ResourceTableProps) {
                   variant="outlined"
                   type="button"
                   onClick={handleRefresh}
-                  disabled={context.isLoading.list}
+                  loading={context.isLoading.list}
                 >
-                  {context.isLoading.list ? (
-                    <CircularProgress size="2em" color="inherit" />
-                  ) : (
-                    "Refresh"
-                  )}
+                  Refresh
                 </Button>
               </FormControl>
 
@@ -163,53 +161,33 @@ export default function ResourceTable(props: ResourceTableProps) {
                                     }}
                                   >
                                     {props.allowEdit && (
-                                      <>
-                                        {context.isLoading.read &&
-                                        context.focusedId === row.id ? (
-                                          <IconButton disabled>
-                                            <CircularProgress
-                                              size="0.75em"
-                                              color="inherit"
-                                            />
-                                          </IconButton>
-                                        ) : (
-                                          <IconButton
-                                            onClick={() =>
-                                              handleReadResource(row.id)
-                                            }
-                                          >
-                                            <EditIcon
-                                              color="disabled"
-                                              fontSize="small"
-                                            />
-                                          </IconButton>
-                                        )}
-                                      </>
+                                      <IconButton
+                                        color="primary"
+                                        loading={
+                                          context.isLoading.read &&
+                                          context.focusedId === row.id
+                                        }
+                                        onClick={() =>
+                                          handleReadResource(row.id)
+                                        }
+                                      >
+                                        <EditIcon fontSize="small" />
+                                      </IconButton>
                                     )}
 
                                     {props.allowDelete && (
-                                      <>
-                                        {context.isLoading.delete &&
-                                        context.focusedId === row.id ? (
-                                          <IconButton disabled>
-                                            <CircularProgress
-                                              size="0.75em"
-                                              color="inherit"
-                                            />
-                                          </IconButton>
-                                        ) : (
-                                          <IconButton
-                                            onClick={() =>
-                                              handleDeleteResource(row.id)
-                                            }
-                                          >
-                                            <DeleteIcon
-                                              color="disabled"
-                                              fontSize="small"
-                                            />
-                                          </IconButton>
-                                        )}
-                                      </>
+                                      <IconButton
+                                        color="primary"
+                                        loading={
+                                          context.isLoading.delete &&
+                                          context.focusedId === row.id
+                                        }
+                                        onClick={() =>
+                                          handleDeleteResource(row.id)
+                                        }
+                                      >
+                                        <DeleteIcon fontSize="small" />
+                                      </IconButton>
                                     )}
                                   </Box>
                                 </TableCell>
