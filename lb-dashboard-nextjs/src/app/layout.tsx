@@ -1,6 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
-import MuiProvider from "@/modules/common/components/mui/provider_mui";
+import MuiProvider from "@/modules/common/components/mui/provider";
 import "./globals.css";
 
 export const metadata: Metadata = {

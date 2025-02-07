@@ -1,6 +1,5 @@
-"use client";
 import React from "react";
-import { Box, Grid, Paper, useTheme } from "@mui/material";
+import { Box, Grid, Paper } from "@mui/material";
 import ResponsiveLogo from "@/assets/icons/logo";
 import ThemeButton from "@/modules/common/components/buttons/button_toggle_theme";
 
@@ -10,7 +9,7 @@ type SplitLayoutProps = Readonly<{
 
 export default function SplitLayout({ children }: SplitLayoutProps) {
   console.log("SplitLayout() was rendered here");
-  const theme = useTheme();
+
   return (
     <Grid container sx={{ height: "100vh", flexWrap: "nowrap" }}>
       <Grid
@@ -19,7 +18,7 @@ export default function SplitLayout({ children }: SplitLayoutProps) {
           position: "relative",
           flex: 1.5,
           alignContent: "center",
-          backgroundColor: theme.vars.palette.primary.main,
+          backgroundColor: "#1B3280",
           display: { xs: "none", sm: "block" },
         }}
       >
@@ -42,7 +41,7 @@ export default function SplitLayout({ children }: SplitLayoutProps) {
         component={Paper}
         elevation={12}
         square
-        sx={{ flex: 1, paddingX: theme.spacing(6), alignContent: "center" }}
+        sx={{ flex: 1, paddingX: "2em", alignContent: "center" }}
       >
         {children}
       </Grid>

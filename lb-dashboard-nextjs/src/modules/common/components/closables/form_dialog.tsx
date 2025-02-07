@@ -10,7 +10,13 @@ import {
 } from "@mui/material";
 import React from "react";
 
-export default function FormDialog() {
+type FormDialogProps = {
+  open: boolean;
+  title?: string;
+  children: React.ReactNode;
+};
+
+export default function FormDialog(props: FormDialogProps) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -28,7 +34,7 @@ export default function FormDialog() {
       </Button>
 
       <Dialog
-        open={open}
+        open={props.open}
         onClose={handleClose}
         PaperProps={{
           component: "form",
@@ -42,7 +48,7 @@ export default function FormDialog() {
           },
         }}
       >
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>{props.title}</DialogTitle>
 
         <DialogContent>
           <DialogContentText>

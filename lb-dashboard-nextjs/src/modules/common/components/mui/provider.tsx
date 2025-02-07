@@ -1,7 +1,6 @@
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { Experimental_CssVarsProvider as CssVarsProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
-import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
 import type {} from "@mui/material/themeCssVarsAugmentation";
 import theme from "@/themes/theme";
 
@@ -18,7 +17,7 @@ export default function MuiProvider({
         modeStorageKey="lb-dashboard-color-mode"
       >
         <CssBaseline />
-        <InitColorSchemeScript defaultMode="system" />
+        {/* <InitColorSchemeScript defaultMode="system" /> */}
         {children}
       </CssVarsProvider>
     </AppRouterCacheProvider>
