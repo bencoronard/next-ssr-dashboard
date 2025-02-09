@@ -14,6 +14,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import UserBadge from "@/modules/common/components/header/user_badge";
 import ResponsiveLogo from "@/assets/icons/logo";
 import React from "react";
+import { modalContext } from "@/modules/common/stores/modals";
+import FormDialogue from "@/modules/common/components/modals/form_dialogue";
+import { Observer } from "mobx-react";
+import { sidebarContext } from "@/modules/common/stores/sidebar";
 
 type DashboardLayoutProps = Readonly<{
   children: React.ReactNode;
@@ -24,23 +28,8 @@ const drawerWidth = 240;
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   console.log("DashboardLayout() was rendered here");
 
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [isClosing, setIsClosing] = React.useState(false);
-
-  const handleDrawerClose = () => {
-    setIsClosing(true);
-    setMobileOpen(false);
-  };
-
-  const handleDrawerTransitionEnd = () => {
-    setIsClosing(false);
-  };
-
-  const handleDrawerToggle = () => {
-    if (!isClosing) {
-      setMobileOpen(!mobileOpen);
-    }
-  };
+  const modal = React.useContext(modalContext);
+  const sidebar = React.useContext(sidebarContext);
 
   return (
     <>
@@ -49,61 +38,67 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           component="nav"
           sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
         >
-          <Drawer
-            variant="permanent"
-            sx={{
-              display: { xs: "none", sm: "block" },
-              position: "relative",
-              "& .MuiDrawer-paper": {
-                position: "relative",
-                boxSizing: "border-box",
-                width: "100%",
-                height: "100%",
-              },
-            }}
-            open
-          >
-            <Toolbar sx={{ display: "flex", gap: "1em" }}>
-              <Box sx={{ width: "3em", height: "3em" }}>
-                <ResponsiveLogo variant="neutral" />
-              </Box>
+          <Observer>
+            {() => (
+              <>
+                <Drawer
+                  variant="permanent"
+                  sx={{
+                    display: { xs: "none", sm: "block" },
+                    position: "relative",
+                    "& .MuiDrawer-paper": {
+                      position: "relative",
+                      boxSizing: "border-box",
+                      width: "100%",
+                      height: "100%",
+                    },
+                  }}
+                  open={sidebar.open}
+                >
+                  <Toolbar sx={{ display: "flex", gap: "1em" }}>
+                    <Box sx={{ width: "3em", height: "3em" }}>
+                      <ResponsiveLogo variant="neutral" />
+                    </Box>
 
-              <Typography variant="h6">Loxbit Portal</Typography>
-            </Toolbar>
+                    <Typography variant="h6">Loxbit Portal</Typography>
+                  </Toolbar>
 
-            <Divider />
+                  <Divider />
 
-            <NavigationList />
-          </Drawer>
+                  <NavigationList />
+                </Drawer>
 
-          <Drawer
-            variant="temporary"
-            open={mobileOpen}
-            onTransitionEnd={handleDrawerTransitionEnd}
-            onClose={handleDrawerClose}
-            ModalProps={{
-              keepMounted: true,
-            }}
-            sx={{
-              display: { xs: "block", sm: "none" },
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
-                width: drawerWidth,
-              },
-            }}
-          >
-            <Toolbar sx={{ display: "flex", gap: "1em" }}>
-              <Box sx={{ width: "3em", height: "3em" }}>
-                <ResponsiveLogo variant="neutral" />
-              </Box>
+                <Drawer
+                  variant="temporary"
+                  open={sidebar.mobileOpen}
+                  onTransitionEnd={sidebar.handleDrawerTransitionEnd}
+                  onClose={sidebar.closeDrawer}
+                  ModalProps={{
+                    keepMounted: true,
+                  }}
+                  sx={{
+                    display: { xs: "block", sm: "none" },
+                    "& .MuiDrawer-paper": {
+                      boxSizing: "border-box",
+                      width: drawerWidth,
+                    },
+                  }}
+                >
+                  <Toolbar sx={{ display: "flex", gap: "1em" }}>
+                    <Box sx={{ width: "3em", height: "3em" }}>
+                      <ResponsiveLogo variant="neutral" />
+                    </Box>
 
-              <Typography variant="h6">Loxbit Portal</Typography>
-            </Toolbar>
+                    <Typography variant="h6">Loxbit Portal</Typography>
+                  </Toolbar>
 
-            <Divider />
+                  <Divider />
 
-            <NavigationList />
-          </Drawer>
+                  <NavigationList />
+                </Drawer>
+              </>
+            )}
+          </Observer>
         </Grid>
 
         <Grid container direction="column" flexGrow={1}>
@@ -112,7 +107,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               <IconButton
                 color="inherit"
                 edge="start"
-                onClick={handleDrawerToggle}
+                onClick={sidebar.toggleDrawer}
                 sx={{ mr: 2, display: { sm: "none" } }}
               >
                 <MenuIcon />
@@ -139,6 +134,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           </Grid>
         </Grid>
       </Grid>
+
+      <Observer>{() => <FormDialogue open={modal.formModal.open} />}</Observer>
     </>
   );
 }

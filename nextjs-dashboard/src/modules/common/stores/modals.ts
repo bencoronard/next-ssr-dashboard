@@ -1,30 +1,42 @@
 import React from "react";
 import { makeAutoObservable } from "mobx";
 
-class ModalContext {
-  bigModal: {
-    open: boolean;
-    title?: string;
-    content?: React.ReactNode;
-    actions?: React.ReactNode;
-  } = { open: false };
-  smallModal: {
-    open: boolean;
-    title?: string;
-    content?: React.ReactNode;
-    actions?: React.ReactNode;
-  } = { open: false };
+export type ModalProps = {
+  open: boolean;
+  title?: string;
+  content?: React.ReactNode;
+  onClose?: () => void;
+};
 
-  setOpenBigModal(open: boolean) {
-    this.bigModal.open = open;
-  }
-  setOpenSmallModal(open: boolean) {
-    this.smallModal.open = open;
-  }
+class ModalContext {
+  formModal: ModalProps = { open: false };
+
+  private setFormModalOpen = (open: boolean) => {
+    this.formModal.open = open;
+  };
+  private setFormModalProps = (props: Omit<ModalProps, "open">) => {
+    this.formModal.title = props.title;
+    this.formModal.content = props.content;
+    this.formModal.onClose = props.onClose;
+  };
 
   constructor() {
     makeAutoObservable(this);
   }
+
+  showFormModal = (props?: ModalProps) => {
+    if (props) {
+      this.setFormModalProps(props);
+    }
+    this.setFormModalOpen(true);
+  };
+
+  closeFormModal = (reset?: boolean) => {
+    if (reset) {
+      this.setFormModalProps({});
+    }
+    this.setFormModalOpen(false);
+  };
 }
 
 export const modalContext = React.createContext(new ModalContext());

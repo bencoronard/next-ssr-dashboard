@@ -21,6 +21,7 @@ import { resourceContext } from "../stores/resource";
 import { Observer } from "mobx-react-lite";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { modalContext } from "@/modules/common/stores/modals";
 
 interface Column {
   id:
@@ -55,9 +56,9 @@ type ResourceTableProps = {
 
 export default function ResourceTable(props: ResourceTableProps) {
   console.log("ResourceTable() was rendered here");
-  const [loading, setLoading] = React.useState(false);
 
   const context = React.useContext(resourceContext);
+  const modal = React.useContext(modalContext);
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -86,6 +87,9 @@ export default function ResourceTable(props: ResourceTableProps) {
       alert(`Resource ${resourceId} deleted`);
     } catch (error) {}
   };
+  const handleCreateResource = () => {
+    modal.showFormModal();
+  };
 
   React.useEffect(() => {
     handleRefresh();
@@ -95,12 +99,12 @@ export default function ResourceTable(props: ResourceTableProps) {
     <Observer>
       {() => (
         <Stack spacing={3}>
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Stack direction="row" justifyContent="space-between">
             <Typography variant="h6" component="h1">
               Resources
             </Typography>
 
-            <Box sx={{ display: "flex", gap: "1em" }}>
+            <Stack direction="row" spacing={2}>
               <FormControl>
                 <Button
                   variant="outlined"
@@ -114,13 +118,17 @@ export default function ResourceTable(props: ResourceTableProps) {
 
               {props.allowCreate && (
                 <FormControl>
-                  <Button variant="contained" type="button">
+                  <Button
+                    variant="contained"
+                    type="button"
+                    onClick={handleCreateResource}
+                  >
                     Create resource
                   </Button>
                 </FormControl>
               )}
-            </Box>
-          </Box>
+            </Stack>
+          </Stack>
 
           <Paper sx={{ width: "100%", overflow: "hidden" }}>
             <TableContainer sx={{ maxHeight: 440 }}>
@@ -153,11 +161,10 @@ export default function ResourceTable(props: ResourceTableProps) {
                             if (column.id === "actions") {
                               return (
                                 <TableCell key={column.id} align={column.align}>
-                                  <Box
-                                    sx={{
-                                      display: "flex",
-                                      justifyContent: "center",
-                                    }}
+                                  <Stack
+                                    direction="row"
+                                    justifyContent="center"
+                                    spacing={1}
                                   >
                                     {props.allowEdit && (
                                       <IconButton
@@ -188,7 +195,7 @@ export default function ResourceTable(props: ResourceTableProps) {
                                         <DeleteIcon fontSize="small" />
                                       </IconButton>
                                     )}
-                                  </Box>
+                                  </Stack>
                                 </TableCell>
                               );
                             }
