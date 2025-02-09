@@ -70,25 +70,25 @@ class ResourceContext {
     list: false,
   };
 
-  setResources = (resources: Resource[]) => {
+  private setResources = (resources: Resource[]) => {
     this.resources = resources;
   };
-  setFocused = (resourceId: number | null) => {
+  private setFocused = (resourceId: number | null) => {
     this.focusedId = resourceId;
   };
-  setLoadingList = (loading: boolean) => {
+  private setLoadingList = (loading: boolean) => {
     this.isLoading.list = loading;
   };
-  setLoadingRead = (loading: boolean) => {
+  private setLoadingRead = (loading: boolean) => {
     this.isLoading.read = loading;
   };
-  setLoadingCreate = (loading: boolean) => {
+  private setLoadingCreate = (loading: boolean) => {
     this.isLoading.create = loading;
   };
-  setLoadingUpdate = (loading: boolean) => {
+  private setLoadingUpdate = (loading: boolean) => {
     this.isLoading.update = loading;
   };
-  setLoadingDelete = (loading: boolean) => {
+  private setLoadingDelete = (loading: boolean) => {
     this.isLoading.delete = loading;
   };
 
