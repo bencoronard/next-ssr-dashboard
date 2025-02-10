@@ -4,25 +4,25 @@ import { createSession } from "../api/routes";
 import { pauseExecution } from "@/modules/common/utilities/executionFlow";
 
 class LoginContext {
-  username: string = "";
-  password: string = "";
+  showPassword: boolean = false;
   isLoading: boolean = false;
 
-  setUsername(username: string) {
-    this.username = username;
-  }
-  setPassword(password: string) {
-    this.password = password;
-  }
-  setIsLoading(isLoading: boolean) {
-    this.isLoading = isLoading;
-  }
+  private setShowPassword = (showPassword: boolean) => {
+    this.showPassword = showPassword;
+  };
+  private setIsLoading = (loading: boolean) => {
+    this.isLoading = loading;
+  };
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  async login(username: string, password: string) {
+  togglePasswordVisibility = () => {
+    this.setShowPassword(!this.showPassword);
+  };
+
+  login = async (username: string, password: string) => {
     this.setIsLoading(true);
     try {
       // await createSession({ username, password });
@@ -31,7 +31,7 @@ class LoginContext {
     } finally {
       this.setIsLoading(false);
     }
-  }
+  };
 }
 
 export const loginContext = React.createContext(new LoginContext());

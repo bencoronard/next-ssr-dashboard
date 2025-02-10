@@ -70,33 +70,33 @@ class ResourceContext {
     list: false,
   };
 
-  setResources(resources: Resource[]) {
+  private setResources = (resources: Resource[]) => {
     this.resources = resources;
-  }
-  setFocused(resourceId: number | null) {
+  };
+  private setFocused = (resourceId: number | null) => {
     this.focusedId = resourceId;
-  }
-  setLoadingList(loading: boolean) {
+  };
+  private setLoadingList = (loading: boolean) => {
     this.isLoading.list = loading;
-  }
-  setLoadingRead(loading: boolean) {
+  };
+  private setLoadingRead = (loading: boolean) => {
     this.isLoading.read = loading;
-  }
-  setLoadingCreate(loading: boolean) {
+  };
+  private setLoadingCreate = (loading: boolean) => {
     this.isLoading.create = loading;
-  }
-  setLoadingUpdate(loading: boolean) {
+  };
+  private setLoadingUpdate = (loading: boolean) => {
     this.isLoading.update = loading;
-  }
-  setLoadingDelete(loading: boolean) {
+  };
+  private setLoadingDelete = (loading: boolean) => {
     this.isLoading.delete = loading;
-  }
+  };
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  async listResources() {
+  listResources = async () => {
     this.setLoadingList(true);
     try {
       // const resources = (await listResources()).data.data;
@@ -108,9 +108,9 @@ class ResourceContext {
     } finally {
       this.setLoadingList(false);
     }
-  }
+  };
 
-  async readResource(id: number) {
+  readResource = async (id: number) => {
     this.setLoadingRead(true);
     this.setFocused(id);
     try {
@@ -125,9 +125,9 @@ class ResourceContext {
       this.setLoadingRead(false);
       this.setFocused(null);
     }
-  }
+  };
 
-  async createResource(field1: string, field2: string, field3: string) {
+  createResource = async (field1: string, field2: string, field3: string) => {
     this.setLoadingCreate(true);
     try {
       // const createdId = (await createResource({ field1, field2, field3 })).data.data;
@@ -138,14 +138,14 @@ class ResourceContext {
     } finally {
       this.setLoadingCreate(false);
     }
-  }
+  };
 
-  async updateResource(
+  updateResource = async (
     id: number,
     field1: string,
     field2: string,
     field3: string
-  ) {
+  ) => {
     this.setLoadingUpdate(true);
     this.setFocused(id);
     try {
@@ -158,9 +158,9 @@ class ResourceContext {
       this.setLoadingUpdate(false);
       this.setFocused(null);
     }
-  }
+  };
 
-  async deleteResource(id: number) {
+  deleteResource = async (id: number) => {
     this.setLoadingDelete(true);
     this.setFocused(id);
     try {
@@ -173,7 +173,7 @@ class ResourceContext {
       this.setLoadingDelete(false);
       this.setFocused(null);
     }
-  }
+  };
 }
 
 export const resourceContext = React.createContext(new ResourceContext());

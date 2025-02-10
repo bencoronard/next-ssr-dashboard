@@ -38,8 +38,6 @@ export default function LoginForm() {
   const theme = useTheme();
   const context = React.useContext(loginContext);
 
-  const [showPassword, setShowPassword] = React.useState<boolean>(false);
-
   const form = useFormik({
     initialValues: loginFormInitValue,
     validationSchema: loginFormValidation,
@@ -50,111 +48,117 @@ export default function LoginForm() {
     validateOnChange: false,
   });
 
-  const handleClickShowPassword = () => setShowPassword(!showPassword);
-
   return (
-    <Observer>
-      {() => (
-        <Box sx={{ width: "100%" }}>
-          <Stack spacing={2}>
-            <Stack spacing={1}>
-              <Typography component="h2" variant="body1">
-                Username
-              </Typography>
+    <Box sx={{ width: "100%" }}>
+      <Stack spacing={2}>
+        <Stack spacing={1}>
+          <Typography component="h2" variant="body1">
+            Username
+          </Typography>
+          <FormControl fullWidth>
+            <TextField
+              placeholder="Enter username"
+              variant="outlined"
+              value={form.values.username}
+              onChange={(e) => {
+                form.setFieldValue("username", e.target.value);
+              }}
+              error={!!form.errors.username}
+              helperText={form.errors.username}
+            />
+          </FormControl>
+        </Stack>
+
+        <Observer>
+          {() => (
+            <>
+              <Stack spacing={1}>
+                <Typography component="h2" variant="body1">
+                  Password
+                </Typography>
+
+                <FormControl fullWidth>
+                  <TextField
+                    placeholder="Enter password"
+                    variant="outlined"
+                    type={context.showPassword ? "text" : "password"}
+                    value={form.values.password}
+                    onChange={(e) => {
+                      form.setFieldValue("password", e.target.value);
+                    }}
+                    error={!!form.errors.password}
+                    helperText={form.errors.password}
+                    slotProps={{
+                      input: {
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton
+                              onClick={context.togglePasswordVisibility}
+                            >
+                              {context.showPassword ? (
+                                <Visibility />
+                              ) : (
+                                <VisibilityOff />
+                              )}
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      },
+                    }}
+                  />
+                </FormControl>
+              </Stack>
+
               <FormControl fullWidth>
-                <TextField
-                  placeholder="Enter username"
-                  variant="outlined"
-                  value={form.values.username}
-                  onChange={(e) => {
-                    form.setFieldValue("username", e.target.value);
-                  }}
-                  error={!!form.errors.username}
-                  helperText={form.errors.username}
-                />
+                <Button
+                  variant="contained"
+                  type="submit"
+                  onClick={form.submitForm}
+                  loading={context.isLoading}
+                >
+                  Submit
+                </Button>
               </FormControl>
-            </Stack>
+            </>
+          )}
+        </Observer>
 
-            <Stack spacing={1}>
-              <Typography component="h2" variant="body1">
-                Password
-              </Typography>
+        <Divider>or</Divider>
 
-              <FormControl fullWidth>
-                <TextField
-                  placeholder="Enter password"
-                  variant="outlined"
-                  type={showPassword ? "text" : "password"}
-                  value={form.values.password}
-                  onChange={(e) => {
-                    form.setFieldValue("password", e.target.value);
-                  }}
-                  error={!!form.errors.password}
-                  helperText={form.errors.password}
-                  slotProps={{
-                    input: {
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton onClick={handleClickShowPassword}>
-                            {showPassword ? <Visibility /> : <VisibilityOff />}
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    },
-                  }}
-                />
-              </FormControl>
-            </Stack>
+        <Stack
+          direction="row"
+          spacing={{ xs: 1, sm: 3 }}
+          justifyContent="center"
+        >
+          {icons.map((icon, index) => {
+            const IconComponent = icon.component;
+            return (
+              <IconButton key={index} onClick={icon.onClick}>
+                <IconComponent sx={iconStyle} />
+              </IconButton>
+            );
+          })}
+        </Stack>
 
-            <FormControl fullWidth>
-              <Button
-                variant="contained"
-                type="submit"
-                onClick={form.submitForm}
-                loading={context.isLoading}
-              >
-                Submit
-              </Button>
-            </FormControl>
+        <Divider />
 
-            <Divider>or</Divider>
-
-            <Stack
-              direction="row"
-              spacing={{ xs: 1, sm: 3 }}
-              justifyContent="center"
-            >
-              {icons.map((icon, index) => {
-                const IconComponent = icon.component;
-                return (
-                  <IconButton key={index} onClick={icon.onClick}>
-                    <IconComponent sx={iconStyle} />
-                  </IconButton>
-                );
-              })}
-            </Stack>
-
-            <Divider />
-
-            <NextLink
-              href="/recover"
-              passHref
-              style={{ width: "fit-content", marginInline: "auto" }}
-            >
-              <Link
-                component={IconButton}
-                underline="none"
-                textAlign="center"
-                sx={{
-                  borderRadius: theme.vars.shape.borderRadius,
-                }}
-              >
-                Forgot password?
-              </Link>
-            </NextLink>
-          </Stack>
-        </Box>
-      )}
-    </Observer>
+        <NextLink
+          href="/recover"
+          passHref
+          style={{ width: "fit-content", marginInline: "auto" }}
+        >
+          <Link
+            component={IconButton}
+            underline="none"
+            textAlign="center"
+            sx={{
+              borderRadius: theme.vars.shape.borderRadius,
+            }}
+          >
+            Forgot password?
+          </Link>
+        </NextLink>
+      </Stack>
+    </Box>
   );
 }
