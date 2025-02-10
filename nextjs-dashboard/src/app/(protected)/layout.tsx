@@ -18,6 +18,7 @@ import { modalContext } from "@/modules/common/stores/modals";
 import { Observer } from "mobx-react";
 import { sidebarContext } from "@/modules/common/stores/sidebar";
 import FormDialog from "@/modules/common/components/modals/dialog_form";
+import SystemDialog from "@/modules/common/components/modals/dialog_system";
 
 type DashboardLayoutProps = Readonly<{
   children: React.ReactNode;
@@ -143,6 +144,20 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             content={modal.formModal.content}
             persistent={modal.formModal.persistent}
             onClose={modal.closeFormModal}
+          />
+        )}
+      </Observer>
+
+      <Observer>
+        {() => (
+          <SystemDialog
+            open={modal.systemModal.open}
+            title={modal.systemModal.title}
+            content={modal.systemModal.content}
+            persistent={modal.systemModal.persistent}
+            labelOk={modal.systemModal.labelOk}
+            onOk={modal.closeSystemModalOnOk}
+            onClose={modal.closeSystemModal}
           />
         )}
       </Observer>

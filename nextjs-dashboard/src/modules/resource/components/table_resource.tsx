@@ -21,6 +21,7 @@ import { Observer } from "mobx-react-lite";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { modalContext } from "@/modules/common/stores/modals";
+import CreateResourceForm from "../forms/create_resource";
 
 interface Column {
   id:
@@ -87,7 +88,11 @@ export default function ResourceTable(props: ResourceTableProps) {
     } catch (error) {}
   };
   const handleCreateResource = () => {
-    modal.showFormModal();
+    modal.showFormModal({
+      title: "Create resource",
+      content: <CreateResourceForm />,
+      persistent: true,
+    });
   };
 
   React.useEffect(() => {
