@@ -41,7 +41,7 @@ export default function CreateResourceForm() {
             );
             modal.showSystemModal({
               title: "Successful",
-              content: "A new resource created successfully",
+              content: "A new resource created",
               labelOk: "Okay",
               onClose: () => {
                 modal.closeFormModal();
@@ -122,16 +122,29 @@ export default function CreateResourceForm() {
 
       <Observer>
         {() => (
-          <FormControl fullWidth>
-            <Button
-              variant="contained"
-              type="submit"
-              onClick={form.submitForm}
-              loading={context.isLoading.create}
-            >
-              Submit
-            </Button>
-          </FormControl>
+          <Stack direction="row" spacing={2} justifyContent="flex-end">
+            <FormControl fullWidth>
+              <Button
+                variant="outlined"
+                type="button"
+                onClick={() => form.resetForm()}
+                disabled={context.isLoading.create}
+              >
+                Clear
+              </Button>
+            </FormControl>
+
+            <FormControl fullWidth>
+              <Button
+                variant="contained"
+                type="button"
+                onClick={form.submitForm}
+                loading={context.isLoading.create}
+              >
+                Submit
+              </Button>
+            </FormControl>
+          </Stack>
         )}
       </Observer>
     </Stack>

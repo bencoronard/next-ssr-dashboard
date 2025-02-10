@@ -22,6 +22,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { modalContext } from "@/modules/common/stores/modals";
 import CreateResourceForm from "../forms/create_resource";
+import UpdateResourceForm from "../forms/update_resource";
 
 interface Column {
   id:
@@ -78,14 +79,41 @@ export default function ResourceTable(props: ResourceTableProps) {
   const handleReadResource = async (id: number) => {
     try {
       const resource = await context.readResource(id);
-      alert(`Data: ${JSON.stringify(resource)}`);
-    } catch (error) {}
+      modal.showFormModal({
+        title: "Update resource",
+        content: <UpdateResourceForm data={resource} />,
+        persistent: true,
+      });
+    } catch (error) {
+      modal.showSystemModal({
+        title: "Failed",
+        content: "An error occurred during resource fetching",
+      });
+    }
   };
-  const handleDeleteResource = async (id: number) => {
-    try {
-      const resourceId = await context.deleteResource(id);
-      alert(`Resource ${resourceId} deleted`);
-    } catch (error) {}
+  const handleDeleteResource = (id: number) => {
+    modal.showSystemModal({
+      title: "Delete resource",
+      content: `Proceed to delete resource ${id}`,
+      labelOk: "Proceed",
+      onOk: async () => {
+        try {
+          await context.deleteResource(id);
+          modal.showSystemModal({
+            title: "Successful",
+            content: `Resource ${id} deleted`,
+            labelOk: "Okay",
+            onClose: context.listResources,
+            onOk: context.listResources,
+          });
+        } catch (error) {
+          modal.showSystemModal({
+            title: "Failed",
+            content: "An error occurred during resource deletion",
+          });
+        }
+      },
+    });
   };
   const handleCreateResource = () => {
     modal.showFormModal({
