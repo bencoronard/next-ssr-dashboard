@@ -15,9 +15,9 @@ import UserBadge from "@/modules/common/components/header/user_badge";
 import ResponsiveLogo from "@/assets/icons/logo";
 import React from "react";
 import { modalContext } from "@/modules/common/stores/modals";
-import FormDialogue from "@/modules/common/components/modals/form_dialogue";
 import { Observer } from "mobx-react";
 import { sidebarContext } from "@/modules/common/stores/sidebar";
+import FormDialog from "@/modules/common/components/modals/dialog_form";
 
 type DashboardLayoutProps = Readonly<{
   children: React.ReactNode;
@@ -135,7 +135,17 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         </Grid>
       </Grid>
 
-      <Observer>{() => <FormDialogue open={modal.formModal.open} />}</Observer>
+      <Observer>
+        {() => (
+          <FormDialog
+            open={modal.formModal.open}
+            title={modal.formModal.title}
+            content={modal.formModal.content}
+            persistent={modal.formModal.persistent}
+            onClose={modal.closeFormModal}
+          />
+        )}
+      </Observer>
     </>
   );
 }

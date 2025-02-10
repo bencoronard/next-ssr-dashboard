@@ -5,6 +5,7 @@ export type ModalProps = {
   open: boolean;
   title?: string;
   content?: React.ReactNode;
+  persistent?: boolean;
   onClose?: () => void;
 };
 
@@ -17,6 +18,7 @@ class ModalContext {
   private setFormModalProps = (props: Omit<ModalProps, "open">) => {
     this.formModal.title = props.title;
     this.formModal.content = props.content;
+    this.formModal.persistent = props.persistent;
     this.formModal.onClose = props.onClose;
   };
 
@@ -28,13 +30,17 @@ class ModalContext {
     if (props) {
       this.setFormModalProps(props);
     }
+
     this.setFormModalOpen(true);
   };
 
   closeFormModal = (reset?: boolean) => {
+    this.formModal.onClose?.();
+
     if (reset) {
       this.setFormModalProps({});
     }
+
     this.setFormModalOpen(false);
   };
 }
