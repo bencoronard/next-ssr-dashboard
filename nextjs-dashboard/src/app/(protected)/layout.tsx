@@ -19,12 +19,38 @@ import { Observer } from "mobx-react";
 import { sidebarContext } from "@/modules/common/stores/sidebar";
 import FormDialog from "@/modules/common/components/modals/dialog_form";
 import SystemDialog from "@/modules/common/components/modals/dialog_system";
+import NavigationAccordion from "@/modules/common/components/sidebar/navigation_accordion";
+import { Permission, View } from "@/modules/permissions/models/types";
+import { navMenuItems } from "@/modules/common/components/sidebar/types";
 
 type DashboardLayoutProps = Readonly<{
   children: React.ReactNode;
 }>;
 
 const drawerWidth = 240;
+
+const mockNavItems: View[] = [
+  {
+    permissionId: Permission.VIEW_CONSENT,
+    path: "/consent",
+    label: "Consent Management",
+  },
+  {
+    permissionId: Permission.VIEW_NOTIFICATION,
+    path: "/notification",
+    label: "Notification Center",
+  },
+  {
+    permissionId: Permission.VIEW_INSURANCE,
+    path: "/insurance",
+    label: "Insurance Management",
+  },
+  {
+    permissionId: Permission.VIEW_AUCTION,
+    path: "/auction",
+    label: "Auction Center",
+  },
+];
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   console.log("DashboardLayout() was rendered here");
@@ -66,7 +92,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
                   <Divider />
 
-                  <NavigationList />
+                  <NavigationAccordion items={navMenuItems} />
                 </Drawer>
 
                 <Drawer
@@ -95,7 +121,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
                   <Divider />
 
-                  <NavigationList />
+                  <NavigationAccordion items={navMenuItems} />
                 </Drawer>
               </>
             )}
