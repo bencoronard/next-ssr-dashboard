@@ -1,6 +1,7 @@
 "use client";
 import { NavMenuParent } from "./types";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import LogoutIcon from "@mui/icons-material/Logout";
 import {
   List,
   ListItem,
@@ -83,6 +84,28 @@ export default function NavigationAccordion(props: NavigationAccordionProps) {
             </Accordion>
           )
       )}
+      <Accordion expanded={false}>
+        <AccordionSummary onClick={() => alert("Logged out!")}>
+          <Stack
+            direction="row"
+            gap="0.75em"
+            sx={{ color: theme.vars.palette.primary.main }}
+          >
+            <ListItemIcon
+              sx={{
+                color: "inherit",
+                display: "flex",
+                alignItems: "center",
+                minWidth: "auto",
+              }}
+            >
+              <LogoutIcon />
+            </ListItemIcon>
+
+            <ListItemText primary={"Logout"} sx={{ fontSize: "1.25em" }} />
+          </Stack>
+        </AccordionSummary>
+      </Accordion>
     </List>
   );
 }
