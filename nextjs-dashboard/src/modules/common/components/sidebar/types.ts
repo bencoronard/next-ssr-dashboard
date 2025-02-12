@@ -1,5 +1,10 @@
 import { Permission } from "@/modules/permissions/models/types";
-import { Assignment, Gavel, Home, Notifications } from "@mui/icons-material";
+import {
+  Assignment,
+  Gavel,
+  Notifications,
+  VerifiedUser,
+} from "@mui/icons-material";
 import { SvgIconProps } from "@mui/material";
 
 export type NavMenuParent = {
@@ -54,7 +59,7 @@ export const navMenuItems: NavMenuParent[] = [
   {
     path: "/insurance",
     label: "Insurance",
-    icon: Home,
+    icon: VerifiedUser,
     children: [
       {
         permissionId: Permission.VIEW_INSURANCE,
