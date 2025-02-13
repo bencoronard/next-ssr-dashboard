@@ -29,29 +29,6 @@ type DashboardLayoutProps = Readonly<{
 
 const drawerWidth = 240;
 
-const mockNavItems: View[] = [
-  {
-    permissionId: Permission.VIEW_CONSENT,
-    path: "/consent",
-    label: "Consent Management",
-  },
-  {
-    permissionId: Permission.VIEW_NOTIFICATION,
-    path: "/notification",
-    label: "Notification Center",
-  },
-  {
-    permissionId: Permission.VIEW_INSURANCE,
-    path: "/insurance",
-    label: "Insurance Management",
-  },
-  {
-    permissionId: Permission.VIEW_AUCTION,
-    path: "/auction",
-    label: "Auction Center",
-  },
-];
-
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   console.log("DashboardLayout() was rendered here");
 
