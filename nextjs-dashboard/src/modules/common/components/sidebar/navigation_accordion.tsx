@@ -57,17 +57,29 @@ export default function NavigationAccordion(props: NavigationAccordionProps) {
                     }
                   >
                     <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
+                      expandIcon={
+                        <ExpandMoreIcon
+                          sx={{
+                            color: context.currentPath.startsWith(parent.path)
+                              ? "white"
+                              : theme.vars.palette.primary.main,
+                          }}
+                        />
+                      }
                       sx={{
                         ...(context.currentPath.startsWith(parent.path) && {
-                          backgroundColor: "#9D72FF",
+                          backgroundColor: theme.vars.palette.primary.main,
                         }),
                       }}
                     >
                       <Stack
                         direction="row"
                         gap="0.75em"
-                        sx={{ color: theme.vars.palette.primary.main }}
+                        sx={{
+                          color: context.currentPath.startsWith(parent.path)
+                            ? "white"
+                            : theme.vars.palette.primary.main,
+                        }}
                       >
                         <ListItemIcon
                           sx={{
@@ -96,7 +108,7 @@ export default function NavigationAccordion(props: NavigationAccordionProps) {
                             sx={{
                               ...(context.currentPath ===
                                 parent.path + child.path && {
-                                backgroundColor: "#FFB3FD",
+                                backgroundColor: "#BCD2E8",
                               }),
                             }}
                           >
