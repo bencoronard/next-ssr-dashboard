@@ -55,6 +55,11 @@ export default function NavigationAccordion(props: NavigationAccordionProps) {
                     onChange={(_, expanded) =>
                       context.updateExpandedPath(expanded ? parent.path : null)
                     }
+                    sx={{
+                      ...(context.currentPath.startsWith(parent.path) && {
+                        backgroundColor: theme.vars.palette.primary.main,
+                      }),
+                    }}
                   >
                     <AccordionSummary
                       expandIcon={
@@ -66,11 +71,6 @@ export default function NavigationAccordion(props: NavigationAccordionProps) {
                           }}
                         />
                       }
-                      sx={{
-                        ...(context.currentPath.startsWith(parent.path) && {
-                          backgroundColor: theme.vars.palette.primary.main,
-                        }),
-                      }}
                     >
                       <Stack
                         direction="row"
@@ -106,10 +106,10 @@ export default function NavigationAccordion(props: NavigationAccordionProps) {
                             key={parent.path + child.path}
                             disablePadding
                             sx={{
-                              ...(context.currentPath ===
-                                parent.path + child.path && {
-                                backgroundColor: "#BCD2E8",
-                              }),
+                              backgroundColor:
+                                context.currentPath === parent.path + child.path
+                                  ? "#BCD2E8"
+                                  : theme.palette.common.white,
                             }}
                           >
                             <NextLink
