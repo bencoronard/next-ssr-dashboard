@@ -32,11 +32,6 @@ export const navMenuItems: NavMenuParent[] = [
         path: "",
         label: "Consent overview",
       },
-      {
-        permissionId: Permission.VIEW_CONSENT_CREATE,
-        path: "/create",
-        label: "Create consent",
-      },
     ],
   },
   {
@@ -48,11 +43,6 @@ export const navMenuItems: NavMenuParent[] = [
         permissionId: Permission.VIEW_NOTIFICATION,
         path: "",
         label: "Notification dashboard",
-      },
-      {
-        permissionId: Permission.VIEW_NOTIFICATION_CREATE,
-        path: "/create",
-        label: "Create notification",
       },
     ],
   },
@@ -66,11 +56,6 @@ export const navMenuItems: NavMenuParent[] = [
         path: "",
         label: "Insurance overview",
       },
-      {
-        permissionId: Permission.VIEW_INSURANCE_CREATE,
-        path: "/issue",
-        label: "Issue insurance",
-      },
     ],
   },
   {
@@ -82,11 +67,6 @@ export const navMenuItems: NavMenuParent[] = [
         permissionId: Permission.VIEW_AUCTION,
         path: "",
         label: "Auction listing",
-      },
-      {
-        permissionId: Permission.VIEW_AUCTION_CREATE,
-        path: "/create",
-        label: "Create auction listing",
       },
     ],
   },
