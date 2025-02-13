@@ -32,6 +32,11 @@ export const navMenuItems: NavMenuParent[] = [
         path: "",
         label: "Consent overview",
       },
+      {
+        permissionId: Permission.VIEW_CONSENT_CREATE,
+        path: "/create",
+        label: "Consent create",
+      },
     ],
   },
   {
