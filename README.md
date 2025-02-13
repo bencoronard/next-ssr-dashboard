@@ -1,106 +1,36 @@
-# CRUD API using Java Spring Boot
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-This application exposes REST API endpoints to perform basic CRUD operations on relational databases. The theme centers around a Secret Intelligence Service (SIS) management system where users with different access levels can assign Missions to Agents.
+## Getting Started
 
-## Table of Contents
+First, run the development server:
 
-- [Security](#security)
-- [Model](#model)
-- [API](#api-endpoints)
-- [Remarks](#remarks)
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-## Security
-The application is secured with basic login authentication using "username" and "password", and authorization is based on the access level tied to the login credentials.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-There are three access levels listed from lowest to highest:
- 1. `USER`: { username = "user", password = "1234" }
- 2. `ADMIN`: { username = "admin", password = "1234" }
- 3. `SUPERUSER`: { username = "superuser", password = "1234" }
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-Upon first accessing an API endpoint, the user will be presented with a login form. Enter one of the credentials listed above.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Model
-There are two main entities in the application:
-- `Agent`{
-  - id: unique ID assigned by AgentRepository
-  - name: full name of agent
-  - alias: secret name used to identify agent
-  - missionId: ID of mission assigned to the agent }
-- `Mission`{
-  - id: unique ID assigned by MissionRepository
-  - name: name of mission
-  - status: status of mission—UNASSIGNED, ASSIGNED, COMPLETED}
+## Learn More
 
-Based on their authority, users can fetch, update, and delete Agent and Mission records. Updating an Agent means assigning a Mission to them, and updating a Mission means changing its status.
+To learn more about Next.js, take a look at the following resources:
 
-## API Endpoints
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-- GET `/`
-  - Description: homepage
-  - Access: USER, ADMIN, SUPERUSER
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-- GET `/h2-console`
-  - Description: database console for managing records
-  - Access: SUPERUSER
+## Deploy on Vercel
 
-- GET `/api/agents`
-  - Description: list all Agent records in database
-  - Access: ADMIN, SUPERUSER
-  - Response: list of Agent objects
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-- GET `/api/missions`
-  - Description: list all Mission records in database
-  - Access: ADMIN, SUPERUSER
-  - Response: list of Mission objects
-
-- GET `/api/agent/{alias}`
-  - Description: fetch an Agent record based on its alias from database
-  - Access: ADMIN, SUPERUSER
-  - Input: String alias
-  - Response: Agent object
-
-- GET `/api/mission/{name}`
-  - Description: fetch a Mission record based on its name from database
-  - Access: USER, ADMIN, SUPERUSER
-  - Input: String name
-  - Response: Mission object
-
-- POST `/api/agent`
-  - Description: insert an Agent record to database
-  - Access: SUPERUSER
-  - Input: { name: String, alias: String}
-  - Response: HTTP OK
-
-- POST `/api/mission`
-  - Description: insert a Mission record to database
-  - Access: ADMIN, SUPERUSER
-  - Input: { name: String }
-  - Response: HTTP OK
-
-- PUT `/api/agent/{alias}/mission/{name}`
-  - Description: assign an Agent a Mission
-  - Access: ADMIN, SUPERUSER
-  - Input: String alias, String name
-  - Response: HTTP OK
-
-- PUT `/api/mission/{name}/status/{status}`
-  - Description: update Mission status
-  - Access: USER, ADMIN, SUPERUSER
-  - Input: String name, String{UNASSIGNED/ASSIGNED/COMPLETED} status
-  - Response: HTTP OK
-
-- DELETE `/api/agent/{alias}`
-  - Description: delete an Agent record based on its alias from database
-  - Access: SUPERUSER
-  - Input: String alias
-  - Response: HTTP OK
-
-- DELETE `/api/mission/{name}`
-  - Description: delete a Mission record based on its name from database
-  - Access: ADMIN, SUPERUSER
-  - Input: String name
-  - Response: HTTP OK
-
-## Remarks
-Due to time constraints, the API has not been thoroughly tested.
-
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
