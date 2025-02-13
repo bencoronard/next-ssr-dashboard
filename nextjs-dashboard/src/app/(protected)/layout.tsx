@@ -9,7 +9,6 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import NavigationList from "@/modules/common/components/sidebar/navigation_list";
 import MenuIcon from "@mui/icons-material/Menu";
 import UserBadge from "@/modules/common/components/header/user_badge";
 import ResponsiveLogo from "@/assets/icons/logo";
@@ -19,6 +18,8 @@ import { Observer } from "mobx-react";
 import { sidebarContext } from "@/modules/common/stores/sidebar";
 import FormDialog from "@/modules/common/components/modals/dialog_form";
 import SystemDialog from "@/modules/common/components/modals/dialog_system";
+import NavigationAccordion from "@/modules/common/components/sidebar/navigation_accordion";
+import { navMenuItems } from "@/modules/common/components/sidebar/types";
 
 type DashboardLayoutProps = Readonly<{
   children: React.ReactNode;
@@ -66,7 +67,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
                   <Divider />
 
-                  <NavigationList />
+                  <NavigationAccordion items={navMenuItems} />
                 </Drawer>
 
                 <Drawer
@@ -95,7 +96,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
                   <Divider />
 
-                  <NavigationList />
+                  <NavigationAccordion items={navMenuItems} />
                 </Drawer>
               </>
             )}
