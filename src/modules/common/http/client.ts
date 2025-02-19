@@ -3,14 +3,13 @@ import properties from "@/properties";
 
 const httpClient = axios.create({
   baseURL: properties.portal.baseUrl,
-  timeout: properties.http.client.timeout,
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
-    // "X-API-KEY": "Mammoth1234",
   },
-  xsrfCookieName: "XSRF-TOKEN",
-  xsrfHeaderName: "X-CSRF-TOKEN",
+  xsrfCookieName: properties.portal.xsrf.cookieName,
+  xsrfHeaderName: properties.portal.xsrf.headerName,
+  timeout: properties.http.client.timeout,
 });
 
 export default httpClient;
