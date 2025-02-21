@@ -8,4 +8,4 @@ export type CreateResourceResponseData = Resource;
 export type ReadResourceResponseData = Resource;
 export type ListResourceResponseData = Paginated<Resource>;
 export type UpdateResourceResponseData = Resource;
-export type DeleteResourceResponseData = Resource;
+export type DeleteResourceResponseData = null;

@@ -20,12 +20,28 @@ import FormDialog from "@/modules/common/components/modals/dialog_form";
 import SystemDialog from "@/modules/common/components/modals/dialog_system";
 import NavigationAccordion from "@/modules/common/components/sidebar/navigation_accordion";
 import { navMenuItems } from "@/modules/common/components/sidebar/types";
+import {
+  extractPermissions,
+  filterNavMenuByPermissions,
+} from "@/modules/permissions/utilities/permission";
 
 type DashboardLayoutProps = Readonly<{
   children: React.ReactNode;
 }>;
 
 const drawerWidth = 240;
+
+const mockPermissionStrings = [
+  "V-CONSENT",
+  "V-NOTIFICATION",
+  "V-INSURANCE",
+  "V-AUCTION",
+];
+
+const navItems = filterNavMenuByPermissions(
+  navMenuItems,
+  extractPermissions(mockPermissionStrings)
+);
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   console.log("DashboardLayout() was rendered here");
@@ -67,7 +83,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
                   <Divider />
 
-                  <NavigationAccordion items={navMenuItems} />
+                  <NavigationAccordion items={navItems} />
                 </Drawer>
 
                 <Drawer
@@ -96,7 +112,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
                   <Divider />
 
-                  <NavigationAccordion items={navMenuItems} />
+                  <NavigationAccordion items={navItems} />
                 </Drawer>
               </>
             )}

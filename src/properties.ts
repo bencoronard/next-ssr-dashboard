@@ -16,7 +16,7 @@ const properties = {
   },
   portal: {
     baseUrl:
-      process.env.NEXT_PUBLIC_APP_PORTAL_BASE_URL || "http://localhost:80",
+      process.env.NEXT_PUBLIC_APP_PORTAL_BASE_URL || "http://localhost:8080",
     xsrf: {
       cookieName:
         process.env.NEXT_PUBLIC_APP_PORTAL_XSRF_COOKIE || "XSRF-TOKEN",
