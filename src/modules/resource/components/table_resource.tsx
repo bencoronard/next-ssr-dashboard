@@ -91,6 +91,7 @@ export default function ResourceTable(props: ResourceTableProps) {
       onOk: async () => {
         try {
           await context.deleteResource(id);
+          console.log("DEBUG!");
           modal.showSystemModal({
             title: "Successful",
             content: `Resource ${id} deleted`,
