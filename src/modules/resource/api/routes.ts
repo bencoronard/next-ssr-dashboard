@@ -8,12 +8,21 @@ import {
   UpdateResourceRequestBody,
   UpdateResourceResponseData,
 } from "./types";
-import { GlobalApiResponseBody } from "@/modules/common/http/types";
+import { GlobalApiResponseBody, Paginable } from "@/modules/common/http/types";
 
 const BASE_PATH = "/api/v1/resources";
 
-export async function listResources() {
-  const path = BASE_PATH;
+export async function listResources(pageable?: Paginable) {
+  let path = BASE_PATH;
+
+  if (pageable) {
+    const queryParams = new URLSearchParams({
+      page: pageable.page.toString(),
+      size: pageable.size.toString(),
+    }).toString();
+    path += `?${queryParams}`;
+  }
+
   return httpClient.get<GlobalApiResponseBody<ListResourceResponseData>>(path);
 }
 

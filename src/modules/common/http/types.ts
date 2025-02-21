@@ -4,6 +4,11 @@ export type GlobalApiResponseBody<T> = {
   payload: T;
 };
 
+export type Paginable = {
+  page: number;
+  size: number;
+};
+
 export type Paginated<T> = {
   content: T[];
   pageNumber: number;

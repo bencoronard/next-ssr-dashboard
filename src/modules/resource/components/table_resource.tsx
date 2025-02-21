@@ -54,7 +54,7 @@ export default function ResourceTable(props: ResourceTableProps) {
   const modal = React.useContext(modalContext);
 
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
@@ -62,8 +62,8 @@ export default function ResourceTable(props: ResourceTableProps) {
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setRowsPerPage(+event.target.value);
     setPage(0);
+    setRowsPerPage(+event.target.value);
   };
   const handleRefresh = async () => {
     await context.listResources();
@@ -119,6 +119,10 @@ export default function ResourceTable(props: ResourceTableProps) {
   React.useEffect(() => {
     handleRefresh();
   }, []);
+
+  React.useEffect(() => {
+    context.listResources({ page, size: rowsPerPage });
+  }, [page, rowsPerPage]);
 
   return (
     <Observer>
@@ -240,7 +244,7 @@ export default function ResourceTable(props: ResourceTableProps) {
               </Table>
             </TableContainer>
             <TablePagination
-              rowsPerPageOptions={[5, 10, 20]}
+              rowsPerPageOptions={[1, 5, 10, 20]}
               component="div"
               count={context.resources.length}
               rowsPerPage={rowsPerPage}

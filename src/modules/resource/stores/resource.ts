@@ -8,6 +8,7 @@ import {
   retrieveResource,
   updateResource,
 } from "../api/routes";
+import { Paginable } from "@/modules/common/http/types";
 
 class ResourceContext {
   resources: Resource[] = [];
@@ -52,10 +53,10 @@ class ResourceContext {
     makeAutoObservable(this);
   }
 
-  listResources = async () => {
+  listResources = async (pageable?: Paginable) => {
     this.setLoadingList(true);
     try {
-      const response = (await listResources()).data.payload;
+      const response = (await listResources(pageable)).data.payload;
       this.setResources(response.content);
     } catch (error) {
       throw error;
