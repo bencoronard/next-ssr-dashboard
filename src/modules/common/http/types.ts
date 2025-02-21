@@ -1,5 +1,5 @@
 export type GlobalApiResponseBody<T> = {
-  respCode: string;
-  respMsg: string;
-  data: T;
+  code: string;
+  message: string;
+  payload: T;
 };
