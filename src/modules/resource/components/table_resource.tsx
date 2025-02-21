@@ -25,14 +25,7 @@ import CreateResourceForm from "../forms/create_resource";
 import UpdateResourceForm from "../forms/update_resource";
 
 interface Column {
-  id:
-    | "id"
-    | "field1"
-    | "field2"
-    | "field3"
-    | "tenant"
-    | "createdBy"
-    | "actions";
+  id: "id" | "field1" | "field2" | "field3" | "createdBy" | "actions";
   label: string;
   minWidth?: number;
   align?: "right" | "center";
@@ -44,7 +37,6 @@ const columns: readonly Column[] = [
   { id: "field1", label: "Field 1", align: "center" },
   { id: "field2", label: "Field 2", align: "center" },
   { id: "field3", label: "Field 3", align: "center" },
-  { id: "tenant", label: "Tenant", align: "center" },
   { id: "createdBy", label: "Created by", align: "center" },
   { id: "actions", label: "Actions", align: "center" },
 ];

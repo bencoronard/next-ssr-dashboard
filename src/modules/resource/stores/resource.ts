@@ -5,7 +5,7 @@ import {
   createResource,
   deleteResource,
   listResources,
-  readResource,
+  retrieveResource,
   updateResource,
 } from "../api/routes";
 import { pauseExecution } from "@/modules/common/utilities/executionFlow";
@@ -16,7 +16,6 @@ const mockData: Resource[] = [
     field1: "Alpha",
     field2: "Beta",
     field3: "Gamma",
-    tenant: "Tenant A",
     createdBy: "User 1",
   },
   {
@@ -24,7 +23,6 @@ const mockData: Resource[] = [
     field1: "Delta",
     field2: "Epsilon",
     field3: "Zeta",
-    tenant: "Tenant B",
     createdBy: "User 2",
   },
   {
@@ -32,7 +30,6 @@ const mockData: Resource[] = [
     field1: "Eta",
     field2: "Theta",
     field3: "Iota",
-    tenant: "Tenant C",
     createdBy: "User 3",
   },
   {
@@ -40,7 +37,6 @@ const mockData: Resource[] = [
     field1: "Kappa",
     field2: "Lambda",
     field3: "Mu",
-    tenant: "Tenant D",
     createdBy: "User 4",
   },
   {
@@ -48,7 +44,6 @@ const mockData: Resource[] = [
     field1: "Nu",
     field2: "Xi",
     field3: "Omicron",
-    tenant: "Tenant E",
     createdBy: "User 5",
   },
 ];
@@ -99,10 +94,10 @@ class ResourceContext {
   listResources = async () => {
     this.setLoadingList(true);
     try {
-      // const resources = (await listResources()).data.data;
-      // this.setResources(resources)
-      await pauseExecution(500);
-      this.setResources(mockData);
+      const response = (await listResources()).data.payload;
+      this.setResources(response.content);
+      // await pauseExecution(500);
+      // this.setResources(mockData);
     } catch (error) {
       throw error;
     } finally {
@@ -114,11 +109,11 @@ class ResourceContext {
     this.setLoadingRead(true);
     this.setFocused(id);
     try {
-      // const resource = (await readResource(id)).data.data;
-      // this.setFocused(resource.id);
-      // return resource;
-      await pauseExecution(500);
-      return mockData.find((item) => item.id === id);
+      const resource = (await retrieveResource(id)).data.payload;
+      this.setFocused(resource.id);
+      return resource;
+      // await pauseExecution(500);
+      // return mockData.find((item) => item.id === id);
     } catch (error) {
       throw error;
     } finally {
@@ -130,9 +125,10 @@ class ResourceContext {
   createResource = async (field1: string, field2: string, field3: string) => {
     this.setLoadingCreate(true);
     try {
-      // const createdId = (await createResource({ field1, field2, field3 })).data.data;
-      // return createdId;
-      await pauseExecution(500);
+      const response = (await createResource({ field1, field2, field3 })).data
+        .payload;
+      return response.id;
+      // await pauseExecution(500);
     } catch (error) {
       throw error;
     } finally {
@@ -149,9 +145,10 @@ class ResourceContext {
     this.setLoadingUpdate(true);
     this.setFocused(id);
     try {
-      // const updatedId = (await updateResource(id, { field1, field2, field3 })).data.data;
-      // return updatedId;
-      await pauseExecution(500);
+      const response = (await updateResource(id, { field1, field2, field3 }))
+        .data.payload;
+      return response.id;
+      // await pauseExecution(500);
     } catch (error) {
       throw error;
     } finally {
@@ -164,9 +161,9 @@ class ResourceContext {
     this.setLoadingDelete(true);
     this.setFocused(id);
     try {
-      // const deletedId = (await deleteResource(id)).data.data;
-      // return deletedId;
-      await pauseExecution(500);
+      const response = (await deleteResource(id)).data.payload;
+      return response.id;
+      // await pauseExecution(500);
     } catch (error) {
       throw error;
     } finally {
