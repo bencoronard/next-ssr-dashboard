@@ -14,9 +14,9 @@ export function middleware(request: NextRequest) {
 
     if (!apiKey || apiKey !== properties.server.secretKey) {
       const response: GlobalApiResponseBody<null> = {
-        respCode: "4001",
-        respMsg: "Missing or invalid API key",
-        data: null,
+        code: "4001",
+        message: "Missing or invalid API key",
+        payload: null,
       };
       return NextResponse.json(response, { status: 401 });
     }
