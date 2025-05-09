@@ -11,9 +11,7 @@ export function extractPermissions(
   );
 }
 
-export function filterNavMenuByPermissions(
-  navMenuItems: NavMenuParent[],
-  allowedPermissions: Set<Permission>
+export function filterNavMenuByPermissions(navMenuItems: NavMenuParent[], allowedPermissions: Set<Permission>
 ): NavMenuParent[] {
   return navMenuItems
     .map((parent) => {
